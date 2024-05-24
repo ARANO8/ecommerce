@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Conectar.php';
+require_once 'conectar.php';
 include_once './../config/global.php';
 
 
