@@ -10,10 +10,10 @@ class Seg_incluyeModel extends ModeloBasePDO {
         $param=array();
         return parent::gselect($sql, $param);
     }
-    public function findid($p_id){
+    public function findid($p_idcategoria, $p_idproducto){
         $sql="SELECT idcategoria, idproducto
         FROM incluye
-        WHERE idcategoria = :p_id;";
+        WHERE idcategoria = :p_idcategoria AND idproducto= :p_idproducto;";
         $param=array();
         array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
         return parent::gselect($sql, $param);
@@ -30,7 +30,7 @@ class Seg_incluyeModel extends ModeloBasePDO {
         array_push($param, [':p_offset', $p_offset, PDO::PARAM_INT]);
         $var=parent::gselect($sql, $param);
 
-        $sqlcount="SELECT COUNT(1) AS cantCategorias
+        $sqlcount="SELECT COUNT(1) AS cantIncluye
         FROM categoria
         WHERE upper(concat(IFNULL(idcategoria,''),IFNULL(idproducto,''))) LIKE concat('%',upper(IFNULL(:filtro,'')),'%');";
         $param=array();
@@ -47,21 +47,21 @@ class Seg_incluyeModel extends ModeloBasePDO {
         array_push($param, [':p_idproducto', $p_idproducto, PDO::PARAM_INT]);
         return parent::ginsert($sql, $param);
     } 
-    public function update($p_id,$p_idcategoria, $p_idproducto){
+    public function update($p_idcategoria, $p_idproducto){
         $sql="UPDATE incluye SET
         idcategoria=:p_idcategoria,
         idproducto=:p_idproducto
-        WHERE idcategoria=:p_id;";
+        WHERE idcategoria=:p_idcategoria AND idproducto= :p_idproducto;";
         $param=array();
-        array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
         array_push($param, [':p_idcategoria', $p_idcategoria, PDO::PARAM_INT]);
         array_push($param, [':p_idproducto', $p_idproducto, PDO::PARAM_INT]);
         return parent::gupdate($sql, $param);
     }
-    public function delete($p_id){
-        $sql="DELETE FROM incluye WHERE idcategoria = :p_id;";
+    public function delete($p_idcategoria, $p_idproducto){
+        $sql="DELETE FROM incluye WHERE idcategoria = :p_idcategoria AND idproducto=:p_idproducto;";
         $param=array();
-        array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
+        array_push($param, [':p_idcategoria', $p_idcategoria, PDO::PARAM_INT]);
+        array_push($param, [':p_idproducto', $p_idproducto, PDO::PARAM_INT]);
         return parent::gdelete($sql, $param);
     }
 
