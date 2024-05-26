@@ -21,14 +21,15 @@ class Seg_vendeModel extends ModeloBasePDO {
     }
 
     // Método para obtener una venta por su ID
-    public function findId($p_id){
+    public function findId($p_idvendedor, $p_idproducto){
         // Consulta SQL para seleccionar una venta por su ID
         $sql = "SELECT idvendedor, idproducto, cantidad
                 FROM vende
-                WHERE idvendedor = :p_id;";
+                WHERE idvendedor = :p_idvendedor; AND idproducto = :p_idproducto;";
         $param = array();
         // Agrega el parámetro ID a la consulta
-        array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
+        array_push($param, [':p_idvendedor', $p_idvendedor, PDO::PARAM_INT]);
+        array_push($param, [':p_idproducto', $p_idproducto, PDO::PARAM_INT]);
         // Ejecuta la consulta y devuelve el resultado
         return parent::gselect($sql, $param);
     }

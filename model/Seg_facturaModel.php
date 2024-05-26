@@ -14,7 +14,7 @@ class Seg_facturaModel extends ModeloBasePDO {
     // Método para obtener todas las facturas
     public function findAll(){
         // Consulta SQL para seleccionar todos los campos de la tabla factura
-        $sql = "SELECT idfactura, montoTotal, fecha, id AS idUsuario FROM factura;";
+        $sql = "SELECT idfactura, montoTotal, fecha, id FROM factura;";
         $param = array();
         // Ejecuta la consulta y devuelve el resultado
         return parent::gselect($sql, $param);
@@ -23,7 +23,7 @@ class Seg_facturaModel extends ModeloBasePDO {
     // Método para obtener una factura por su ID
     public function findId($p_id){
         // Consulta SQL para seleccionar una factura por su ID
-        $sql = "SELECT idfactura, montoTotal, fecha, id AS idUsuario
+        $sql = "SELECT idfactura, montoTotal, fecha, id 
                 FROM factura
                 WHERE idfactura = :p_id;";
         $param = array();
@@ -36,7 +36,7 @@ class Seg_facturaModel extends ModeloBasePDO {
     // Método para obtener todas las facturas con paginación y filtrado
     public function findPaginateAll($p_filtro, $p_limit, $p_offset){
         // Consulta SQL para seleccionar todas las facturas con paginación y filtrado
-        $sql = "SELECT idfactura, montoTotal, fecha, id AS idUsuario
+        $sql = "SELECT idfactura, montoTotal, fecha, id 
                 FROM factura
                 WHERE upper(concat(IFNULL(idfactura,''), IFNULL(montoTotal,''), IFNULL(fecha,''), IFNULL(id,''))) LIKE concat('%',upper(IFNULL(:p_filtro,'')),'%')
                 LIMIT :p_limit

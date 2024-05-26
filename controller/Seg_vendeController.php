@@ -78,11 +78,12 @@ function filterAll($input) {
 // Función para obtener una venta por su ID
 function filterId($input) {
     // Obtiene el parámetro 'id' de la petición
-    $p_id = !empty($input['idvendedor']) ? $input['idvendedor'] : $_GET['idvendedor'];
+    $p_idvendedor = !empty($input['idvendedor']) ? $input['idvendedor'] : $_GET['idvendedor'];
+    $p_idproducto = !empty($input['idproducto']) ? $input['idproducto'] : $_GET['idproducto'];
     // Crea un nuevo objeto seg_vendeModel
     $objVende = new Seg_vendeModel();
     // Llama a la función findId del objeto seg_vendeModel
-    $var = $objVende->findId($p_id);
+    $var = $objVende->findId($p_idvendedor, $p_idproducto);
     // Imprime el resultado en formato JSON
     echo json_encode($var);
 }
