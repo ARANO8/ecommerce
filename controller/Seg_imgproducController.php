@@ -111,8 +111,8 @@ function filterPaginateAll($input) {
 // Función para insertar una nueva imagen
 // necesita dos parametros, el primero es el nombre de la imagen y el segundo es la ruta de la imagen
 function insert($input) {
-    echo json_encode($_FILES["imagen"]);
-    //echo json_encode(!empty($_FILES["imagen"]));
+    // echo json_encode($_FILES["imagen"]);
+    echo json_encode(!empty($_FILES["imagen"]));
     // Verifica si el formulario ha sido enviado
     if(!empty($_FILES["imagen"]["tmp_name"])) {
         // Obtiene los parámetros de la petición
@@ -132,7 +132,7 @@ function insert($input) {
 
             if ($var) {
                 $idRegistro = $objImagenproduc->getLastInsertId();  // Método para obtener el último ID insertado
-                $ruta = $directorio . $idRegistro . "." . $tipoImagen;
+                $ruta = $directorio.$idRegistro.".".$tipoImagen;
 
                 // Actualiza el registro con la ruta de la imagen
                 $actualizarImagen = $objImagenproduc->update($idRegistro, $ruta);
