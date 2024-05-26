@@ -10,12 +10,12 @@ class Seg_categoriaModel extends ModeloBasePDO {
         $param=array();
         return parent::gselect($sql, $param);
     }
-    public function findid($p_id){
+    public function findid($p_idcategoria){
         $sql="SELECT `idcategoria`, `nombreC`
         FROM `categoria`
-        WHERE idcategoria = :p_id ;";
+        WHERE idcategoria=:p_idcategoria; ";
         $param=array();
-        array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
+        array_push($param,[':p_idcategoria',$p_idcategoria,PDO::PARAM_INT]);
         return parent::gselect($sql, $param);
     }
     public function findpaginateall($p_filtro, $p_limit, $p_offset){
@@ -45,19 +45,19 @@ class Seg_categoriaModel extends ModeloBasePDO {
         array_push($param, [':p_nombreC', $p_nombreC, PDO::PARAM_STR]);
         return parent::ginsert($sql, $param);
     } 
-    public function update($p_id,$p_nombreC){
+    public function update($p_idcategoria,$p_nombreC){
         $sql="UPDATE `categoria` SET
         `nombreC`= :p_nombreC
-        WHERE idcategoria= :p_id;";
+        WHERE idcategoria= :p_idcategoria;";
         $param=array();
-        array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
+        array_push($param, [':p_idcategoria', $p_idcategoria, PDO::PARAM_INT]);
         array_push($param, [':p_nombreC', $p_nombreC, PDO::PARAM_STR]);
         return parent::gupdate($sql, $param);
     }
-    public function delete($p_id){
-        $sql="DELETE FROM `categoria` WHERE idcategoria=:p_id;";
+    public function delete($p_idcategoria){
+        $sql="DELETE FROM `categoria` WHERE idcategoria=:p_idcategoria;";
         $param=array();
-        array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
+        array_push($param, [':p_idcategoria', $p_idcategoria, PDO::PARAM_INT]);
         return parent::gdelete($sql, $param);
     }
 

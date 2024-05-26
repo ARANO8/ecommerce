@@ -52,7 +52,7 @@ function filterAll($input){
 }
 function filterId($input){
     $p_id=!empty($input['id']) ? $input['id'] : $_GET['id'];
-    $objCat = new Seg_categoriaModel();
+        $objCat = new Seg_categoriaModel();
     $var = $objCat->findid($p_id);
     echo json_encode($var);
 }
@@ -74,16 +74,16 @@ function insert($input){
     echo json_encode($var);
 }
 function update($input){
-    $p_id=!empty ($input['id']) ? $input['id'] : $_POST['id'];
+    $p_idcategoria=!empty ($input['idcategoria']) ? $input['idcategoria'] : $_POST['idcategoria'];
     $p_nombreC=!empty ($input['nombreC']) ? $input['nombreC'] : $_POST['nombreC'];
     $objCat = new Seg_categoriaModel();
-    $var = $objCat->update($p_id,$p_nombreC);
+    $var = $objCat->update($p_idcategoria,$p_nombreC);
     echo json_encode($var);
 }
 function delete($input){
-    $p_id=!empty ($input['id']) ? $input['id'] : $_POST['id'];
+    $p_idcategoria=!empty ($input['idcategoria']) ? $input['idcategoria'] : $_POST['idcategoria'];
     $objCat = new Seg_categoriaModel();
-    $var = $objCat->delete($p_id);
+    $var = $objCat->delete($p_idcategoria);
     echo json_encode($var); 
 }
 
