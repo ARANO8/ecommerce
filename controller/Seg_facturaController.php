@@ -72,7 +72,7 @@ function filterAll($input) {
     $objFactura = new Seg_facturaModel();
     // Llama a la función findAll del objeto Seg_facturaModel
     $var = $objFactura->findAll();
-    // Imprime el resultado en formato JSON
+    // Imprime el resultado en formato JSON 
     echo json_encode($var);
 }
 // Función para obtener una factura por su ID
@@ -141,7 +141,7 @@ function update($input) {
 // Función para eliminar una factura
 function delete($input) {
     // Obtiene el parámetro 'id' de la petición
-    $p_idfactura = !empty($input['id']) ? $input['id'] : $_POST['id'];
+    $p_idfactura = !empty($input['idfactura']) ? $input['idfactura'] : $_POST['idfactura'];
 
     // Crea un nuevo objeto Seg_facturaModel
     $objFactura = new Seg_facturaModel();
