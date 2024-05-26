@@ -70,3 +70,8 @@ CREATE TABLE VENDE (
     FOREIGN KEY (idvendedor) REFERENCES USUARIO(id),
     FOREIGN KEY (idproducto) REFERENCES PRODUCTO(idproducto)
 );
+
+
+
+HOLA MUNDO XD 
+

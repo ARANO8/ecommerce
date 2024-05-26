@@ -14,21 +14,21 @@ class Seg_facturaModel extends ModeloBasePDO {
     // Método para obtener todas las facturas
     public function findAll(){
         // Consulta SQL para seleccionar todos los campos de la tabla factura
-        $sql = "SELECT idfactura, montoTotal, fecha, id AS idUsuario FROM factura;";
+        $sql = "SELECT idfactura, montoTotal, fecha, id FROM factura;";
         $param = array();
         // Ejecuta la consulta y devuelve el resultado
         return parent::gselect($sql, $param);
     }
 
     // Método para obtener una factura por su ID
-    public function findId($p_id){
+    public function findId($p_idfactura){
         // Consulta SQL para seleccionar una factura por su ID
-        $sql = "SELECT idfactura, montoTotal, fecha, id AS idUsuario
+        $sql = "SELECT idfactura, montoTotal, fecha, id
                 FROM factura
-                WHERE idfactura = :p_id;";
+                WHERE idfactura = :p_idfactura;";
         $param = array();
         // Agrega el parámetro ID a la consulta
-        array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
+        array_push($param, [':p_idfactura', $p_idfactura, PDO::PARAM_INT]);
         // Ejecuta la consulta y devuelve el resultado
         return parent::gselect($sql, $param);
     }
@@ -36,7 +36,7 @@ class Seg_facturaModel extends ModeloBasePDO {
     // Método para obtener todas las facturas con paginación y filtrado
     public function findPaginateAll($p_filtro, $p_limit, $p_offset){
         // Consulta SQL para seleccionar todas las facturas con paginación y filtrado
-        $sql = "SELECT idfactura, montoTotal, fecha, id AS idUsuario
+        $sql = "SELECT idfactura, montoTotal, fecha, id
                 FROM factura
                 WHERE upper(concat(IFNULL(idfactura,''), IFNULL(montoTotal,''), IFNULL(fecha,''), IFNULL(id,''))) LIKE concat('%',upper(IFNULL(:p_filtro,'')),'%')
                 LIMIT :p_limit
@@ -66,32 +66,32 @@ class Seg_facturaModel extends ModeloBasePDO {
     }
 
     // Método para insertar una nueva factura
-    public function insert($p_montoTotal, $p_fecha, $p_idUsuario){
+    public function insert($p_montoTotal, $p_fecha, $p_id){
         // Consulta SQL para insertar una nueva factura
-        $sql = "INSERT INTO factura (montoTotal, fecha, id) VALUES (:p_montoTotal, :p_fecha, :p_idUsuario);";
+        $sql = "INSERT INTO factura (montoTotal, fecha, id) VALUES (:p_montoTotal, :p_fecha, :p_id);";
         $param = array();
         // Agrega los parámetros de monto total, fecha e ID de usuario a la consulta
         array_push($param, [':p_montoTotal', $p_montoTotal, PDO::PARAM_STR]);
         array_push($param, [':p_fecha', $p_fecha, PDO::PARAM_STR]);
-        array_push($param, [':p_idUsuario', $p_idUsuario, PDO::PARAM_INT]);
+        array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
         // Ejecuta la consulta y devuelve el resultado
         return parent::ginsert($sql, $param);
     }
 
     // Método para actualizar una factura
-    public function update($p_idfactura, $p_montoTotal, $p_fecha, $p_idUsuario){
+    public function update($p_idfactura, $p_montoTotal, $p_fecha, $p_id){
         // Consulta SQL para actualizar una factura
         $sql = "UPDATE factura SET
                 montoTotal = :p_montoTotal,
                 fecha = :p_fecha,
-                id = :p_idUsuario
+                id = :p_id
                 WHERE idfactura = :p_idfactura;";
         $param = array();
         // Agrega los parámetros de ID, monto total, fecha e ID de usuario a la consulta
         array_push($param, [':p_idfactura', $p_idfactura, PDO::PARAM_INT]);
         array_push($param, [':p_montoTotal', $p_montoTotal, PDO::PARAM_STR]);
         array_push($param, [':p_fecha', $p_fecha, PDO::PARAM_STR]);
-        array_push($param, [':p_idUsuario', $p_idUsuario, PDO::PARAM_INT]);
+        array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
         // Ejecuta la consulta y devuelve el resultado
         return parent::gupdate($sql, $param);
     }

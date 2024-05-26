@@ -1,5 +1,5 @@
 <?php
-// Permite el acceso desde cualquier origen
+// Permite el acceso desde cualquier origen 
 header("Access-Control-Allow-Origin: *");
 // Permite los métodos PUT, GET, POST, DELETE
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
@@ -78,11 +78,11 @@ function filterAll($input) {
 // Función para obtener una factura por su ID
 function filterId($input) {
     // Obtiene el parámetro 'id' de la petición
-    $p_id = !empty($input['idfactura']) ? $input['idfactura'] : $_GET['idfactura'];
+    $p_idfactura = !empty($input['idfactura']) ? $input['idfactura'] : $_GET['idfactura'];
     // Crea un nuevo objeto Seg_facturaModel
     $objFactura = new Seg_facturaModel();
     // Llama a la función findId del objeto Seg_facturaModel
-    $var = $objFactura->findId($p_id);
+    $var = $objFactura->findId($p_idfactura);
     // Imprime el resultado en formato JSON
     echo json_encode($var);
 }
@@ -113,12 +113,12 @@ function insert($input) {
     // Obtiene los parámetros de la petición
     $p_montoTotal = !empty($input['montoTotal']) ? $input['montoTotal'] : $_POST['montoTotal'];
     $p_fecha = !empty($input['fecha']) ? $input['fecha'] : $_POST['fecha'];
-    $p_idUsuario = !empty($input['idUsuario']) ? $input['idUsuario'] : $_POST['idUsuario'];
+    $p_id = !empty($input['id']) ? $input['id'] : $_POST['id'];
     
     // Crea un nuevo objeto Seg_facturaModel
     $objFactura = new Seg_facturaModel();
     // Llama a la función insert del objeto Seg_facturaModel
-    $var = $objFactura->insert($p_montoTotal, $p_fecha, $p_idUsuario);
+    $var = $objFactura->insert($p_montoTotal, $p_fecha, $p_id);
     // Imprime el resultado en formato JSON
     echo json_encode($var);
 }
@@ -129,11 +129,11 @@ function update($input) {
     $p_montoTotal = !empty($input['montoTotal']) ? $input['montoTotal'] : $_POST['montoTotal'];
     $p_fecha = !empty($input['fecha']) ? $input['fecha'] : $_POST['fecha'];
     // Obtiene el parámetro 'idUsuario' de la petición
-    $p_idUsuario = !empty($input['id']) ? $input['id'] : $_POST['id'];
+    $p_id = !empty($input['id']) ? $input['id'] : $_POST['id'];
     // Crea un nuevo objeto Seg_facturaModel
     $objFactura = new Seg_facturaModel();
     // Llama a la función update del objeto Seg_facturaModel
-    $var = $objFactura->update($p_idfactura, $p_montoTotal, $p_fecha, $p_idUsuario);
+    $var = $objFactura->update($p_idfactura, $p_montoTotal, $p_fecha, $p_id);
     // Imprime el resultado en formato JSON
     echo json_encode($var);
 }
@@ -141,7 +141,7 @@ function update($input) {
 // Función para eliminar una factura
 function delete($input) {
     // Obtiene el parámetro 'id' de la petición
-    $p_idfactura = !empty($input['id']) ? $input['id'] : $_POST['id'];
+    $p_idfactura = !empty($input['idfactura']) ? $input['idfactura'] : $_POST['idfactura'];
 
     // Crea un nuevo objeto Seg_facturaModel
     $objFactura = new Seg_facturaModel();
