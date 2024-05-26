@@ -15,7 +15,8 @@ class Seg_incluyeModel extends ModeloBasePDO {
         FROM incluye
         WHERE idcategoria = :p_idcategoria AND idproducto= :p_idproducto;";
         $param=array();
-        array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
+        array_push($param, [':p_idcategoria', $p_idcategoria, PDO::PARAM_INT]);
+        array_push($param, [':p_idproducto', $p_idproducto, PDO::PARAM_INT]);
         return parent::gselect($sql, $param);
     }
     public function findpaginateall($p_filtro, $p_limit, $p_offset){

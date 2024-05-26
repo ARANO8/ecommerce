@@ -51,8 +51,8 @@ function filterAll($input){
     echo json_encode($var);
 }
 function filterId($input){
-    $p_idproducto=!empty ($input['idproducto']) ? $input['idproducto'] : $_POST['idproducto'];
-    $p_idfactura=!empty ($input['idfactura']) ? $input['idfactura'] : $_POST['idfactura'];
+    $p_idproducto=!empty ($input['idproducto']) ? $input['idproducto'] : $_GET['idproducto'];
+    $p_idfactura=!empty ($input['idfactura']) ? $input['idfactura'] : $_GET['idfactura'];
     $objComp = new Seg_compraModel();
     $var = $objComp->findid($p_idproducto, $p_idfactura);
     echo json_encode($var);
