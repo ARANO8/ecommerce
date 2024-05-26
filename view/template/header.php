@@ -30,7 +30,7 @@
         <a href="index3.html" class="navbar-brand">
           <img src="<?php echo URL_RESOURCES; ?>adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
               style="opacity: .8" height="50" width="50"> 
-          <span class="brand-text font-weight-light">AdminLTE 3</span>
+          <span class="brand-text font-weight-light">Chimpokomon Shop</span>
         </a>
         <!-- Left navbar links -->
         <ul class="navbar-nav">
