@@ -14,7 +14,7 @@ class Seg_usuarioModel extends ModeloBasePDO
         $param = array();
         return parent::gselect($sql, $param);
     }
-    //Obtiene todas los usuarios con paginación y filtrado
+    //Obtiene todos los usuarios con paginación y filtrado
     public function findpaginateall($p_filtro, $p_limit, $p_offset)
     {
         $sql = " SELECT id, nombre, correo, user, password, direccion, fotoperfil, cliente, vendedor FROM usuario
@@ -45,26 +45,17 @@ class Seg_usuarioModel extends ModeloBasePDO
         return parent::gselect($sql, $param);
     }
     //Inserta un usuario
-    public function insert($p_id, $p_nombre, $p_correo, $p_user, $p_password, $p_direccion, $p_fotoperfil, $p_cliente, $p_vendedor)
+    public function insert($p_nombre, $p_correo, $p_user, $p_password, $p_direccion, $p_fotoperfil, $p_cliente, $p_vendedor)
     {
-        $sql = " INSERT INTO usuario(id, nombre, correo, user, password, direccion, fotoperfil, cliente, vendedor) VALUES (:p_id, :p_nombre, :p_correo, :p_user, :p_password, :p_direccion, :p_fotoperfil, :p_cliente, :p_vendedor) ";
+        $sql = " INSERT INTO usuario(nombre, correo, user, password, direccion, fotoperfil, cliente, vendedor) VALUES (:p_nombre, :p_correo, :p_user, :p_password, :p_direccion, :p_fotoperfil, :p_cliente, :p_vendedor) ";
         $param = array();
-        array_push($param, [':p_id', $p_id, PDO::PARAM_STR]);
-
         array_push($param, [':p_nombre', $p_nombre, PDO::PARAM_STR]);
-
         array_push($param, [':p_correo', $p_correo, PDO::PARAM_STR]);
-
         array_push($param, [':p_user', $p_user, PDO::PARAM_STR]);
-
         array_push($param, [':p_password', $p_password, PDO::PARAM_STR]);
-
         array_push($param, [':p_direccion', $p_direccion, PDO::PARAM_INT]);
-
         array_push($param, [':p_fotoperfil', $p_fotoperfil, PDO::PARAM_STR]);
-
         array_push($param, [':p_cliente', $p_cliente, PDO::PARAM_STR]);
-
         array_push($param, [':p_vendedor', $p_vendedor, PDO::PARAM_STR]);
 
         return parent::ginsert($sql, $param);
@@ -72,27 +63,26 @@ class Seg_usuarioModel extends ModeloBasePDO
     //Actualiza datos de un usuario
     public function update($p_id, $p_nombre, $p_correo, $p_user, $p_password, $p_direccion, $p_fotoperfil, $p_cliente, $p_vendedor)
     {
-        $sql = "UPDATE usuario SET id=':p_id',nombre=:p_nombre,correo=:p_correo,user=:p_user,password=:p_password,direccion=:p_direccion,fotoperfil=:p_fotoperfil,cliente=:p_cliente,vendedor=:p_vendedor
-        WHERE id = :p_id";
+        $sql = "UPDATE usuario SET
+                        nombre=:p_nombre,
+                        correo=:p_correo,
+                        user=:p_user,
+                        password=:p_password,
+                        direccion=:p_direccion,
+                        fotoperfil=:p_fotoperfil,
+                        cliente=:p_cliente,
+                        vendedor=:p_vendedor
+                    WHERE id = :p_id";
         $param = array();
         array_push($param, [':p_id', $p_id, PDO::PARAM_STR]);
-
         array_push($param, [':p_nombre', $p_nombre, PDO::PARAM_STR]);
-
         array_push($param, [':p_correo', $p_correo, PDO::PARAM_STR]);
-
         array_push($param, [':p_user', $p_user, PDO::PARAM_STR]);
-
         array_push($param, [':p_password', $p_password, PDO::PARAM_STR]);
-
         array_push($param, [':p_direccion', $p_direccion, PDO::PARAM_INT]);
-
         array_push($param, [':p_fotoperfil', $p_fotoperfil, PDO::PARAM_STR]);
-
         array_push($param, [':p_cliente', $p_cliente, PDO::PARAM_STR]);
-
         array_push($param, [':p_vendedor', $p_vendedor, PDO::PARAM_STR]);
-
 
         return parent::gupdate($sql, $param);
     }

@@ -58,7 +58,7 @@ function  filterId($input)
     $var = $tseg_usuario->findId($p_id);
     echo json_encode($var);
 }
-//Función para obtener todas los usuarios con paginación y filtrado
+//Función para obtener todos los usuarios con paginación y filtrado
 function  filterPaginateAll($input)
 {
     $nro_record_page = 10;
@@ -81,7 +81,6 @@ function  filterAll($input)
 //Funcion para insertar usuario
 function insert($input)
 {
-    $p_id = !empty($input['id']) ? $input['id'] : $_POST['id'];;
     $p_nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];;
     $p_correo = !empty($input['correo']) ? $input['correo'] : $_POST['correo'];;
     $p_user = !empty($input['user']) ? $input['user'] : $_POST['user'];;
@@ -92,7 +91,7 @@ function insert($input)
     $p_vendedor = !empty($input['vendedor']) ? $input['vendedor'] : $_POST['vendedor'];;
 
     $tseg_usuario = new Seg_usuarioModel();
-    $var = $tseg_usuario->insert($p_id, $p_nombre, $p_correo, $p_user, $p_password, $p_direccion, $p_fotoperfil, $p_cliente, $p_vendedor);
+    $var = $tseg_usuario->insert($p_nombre, $p_correo, $p_user, $p_password, $p_direccion, $p_fotoperfil, $p_cliente, $p_vendedor);
 
     echo json_encode($var);
 }
