@@ -51,9 +51,10 @@ function filterAll($input){
     echo json_encode($var);
 }
 function filterId($input){
-    $p_id=!empty($input['id']) ? $input['id'] : $_GET['id'];
+    $p_idcategoria=!empty($input['idcategoria']) ? $input['idcategoria'] : $_GET['idcategoria'];
+    $p_idproducto=!empty($input['idproducto']) ? $input['idproducto'] : $_GET['idproducto'];
     $objInc = new Seg_incluyeModel();
-    $var = $objInc->findid($p_id);
+    $var = $objInc->findid($p_idcategoria, $p_idproducto);
     echo json_encode($var);
 }
 function filterPaginateAll($input){
@@ -75,16 +76,17 @@ function insert($input){
     echo json_encode($var);
 }
 function update($input){
-    $p_id=!empty ($input['id']) ? $input['id'] : $_POST['id'];
     $p_idcategoria=!empty ($input['idcategoria']) ? $input['idcategoria'] : $_POST['idcategoria'];
+    $p_idproducto=!empty ($input['idproducto']) ? $input['idproducto'] : $_POST['idproducto'];
     $objInc = new Seg_incluyeModel();
-    $var = $objInc->update($p_id,$p_idcategoria);
+    $var = $objInc->update($p_idcategoria, $p_idproducto);
     echo json_encode($var);
 }
 function delete($input){
-    $p_id=!empty ($input['id']) ? $input['id'] : $_POST['id'];
+    $p_idcategoria=!empty ($input['idcategoria']) ? $input['idcategoria'] : $_POST['idcategoria'];
+    $p_idproducto=!empty ($input['idproducto']) ? $input['idproducto'] : $_POST['idproducto'];
     $objInc = new Seg_incluyeModel();
-    $var = $objInc->delete($p_id);
+    $var = $objInc->delete($p_idcategoria, $p_idproducto);
     echo json_encode($var); 
 }
 

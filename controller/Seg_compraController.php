@@ -51,9 +51,10 @@ function filterAll($input){
     echo json_encode($var);
 }
 function filterId($input){
-    $p_id=!empty($input['id']) ? $input['id'] : $_GET['id'];
+    $p_idproducto=!empty ($input['idproducto']) ? $input['idproducto'] : $_POST['idproducto'];
+    $p_idfactura=!empty ($input['idfactura']) ? $input['idfactura'] : $_POST['idfactura'];
     $objComp = new Seg_compraModel();
-    $var = $objComp->findid($p_id);
+    $var = $objComp->findid($p_idproducto, $p_idfactura);
     echo json_encode($var);
 }
 function filterPaginateAll($input){
@@ -77,19 +78,19 @@ function insert($input){
     echo json_encode($var);
 }
 function update($input){
-    $p_id=!empty ($input['id']) ? $input['id'] : $_POST['id'];
     $p_idproducto=!empty ($input['idproducto']) ? $input['idproducto'] : $_POST['idproducto'];
     $p_idfactura=!empty ($input['idfactura']) ? $input['idfactura'] : $_POST['idfactura'];
     $p_precioventa=!empty ($input['precioventa']) ? $input['precioventa'] : $_POST['precioventa'];
     $p_cantidad=!empty ($input['cantidad']) ? $input['cantidad'] : $_POST['cantidad'];
     $objComp = new Seg_compraModel();
-    $var = $objComp->update($p_id,$p_nombreC);
+    $var = $objComp->update($p_idproducto, $p_idfactura, $p_precioventa, $p_cantidad);
     echo json_encode($var);
 }
 function delete($input){
-    $p_id=!empty ($input['id']) ? $input['id'] : $_POST['id'];
+    $p_idproducto=!empty ($input['idproducto']) ? $input['idproducto'] : $_POST['idproducto'];
+    $p_idfactura=!empty ($input['idfactura']) ? $input['idfactura'] : $_POST['idfactura'];
     $objComp = new Seg_compraModel();
-    $var = $objComp->delete($p_id);
+    $var = $objComp->delete($p_idproducto, $p_idfactura);
     echo json_encode($var); 
 }
 
