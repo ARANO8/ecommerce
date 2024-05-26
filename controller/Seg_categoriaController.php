@@ -51,9 +51,9 @@ function filterAll($input){
     echo json_encode($var);
 }
 function filterId($input){
-    $p_id=!empty($input['id']) ? $input['id'] : $_GET['id'];
-        $objCat = new Seg_categoriaModel();
-    $var = $objCat->findid($p_id);
+    $objCat = new Seg_categoriaModel();
+    $p_idcategoria=!empty($input['idcategoria']) ? $input['idcategoria'] : $_GET['idcategoria'];
+    $var = $objCat->findid($p_idcategoria);
     echo json_encode($var);
 }
 function filterPaginateAll($input){
