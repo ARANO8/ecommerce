@@ -1,4 +1,4 @@
-<?php require(ROOT_VIEW.'/template/header.php');?>
+<?php require(ROOT_VIEW. '/template/header.php');?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -36,4 +36,4 @@
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-<?php require(ROOT_VIEW.'/template/footer.php')?>
+<?php require(ROOT_VIEW.'/template/footer.php');?>
