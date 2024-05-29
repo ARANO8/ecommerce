@@ -12,14 +12,16 @@ header("Content-Type: application/json; charset=UTF-8");
 session_start();
 
 // Incluye el archivo de configuración global
-require_once ($_SERVER['DOCUMENT_ROOT']."/ecommerce/config/global.php");
+require_once ($_SERVER['DOCUMENT_ROOT'] . "/ecommerce/config/global.php");
 // Incluye el archivo del modelo Seg_imgprodModel
-require_once (ROOT_DIR ."/model/Seg_imgproducModel.php");
+require_once (ROOT_DIR . "/model/Seg_imgproducModel.php");
 
 // Obtiene el método HTTP usado en la petición
 $method = $_SERVER['REQUEST_METHOD'];
 // Decodifica el cuerpo de la petición y lo convierte en un array asociativo
 $input = json_decode(file_get_contents('php://input'), true);
+
+
 
 try {
     // Obtiene la información de la ruta de la petición
@@ -30,11 +32,14 @@ try {
     // Imprime el mensaje de error si se produce una excepción
     echo $e->getMessage();
 }
+echo json_encode($method);
 // Dependiendo del método HTTP usado en la petición, realiza diferentes acciones
 switch ($method) {
     case 'GET':
         // Obtiene el parámetro 'ope' de la petición
         $p_ope = !empty($input['ope']) ? $input['ope'] : $_GET['ope'];
+
+        echo json_encode($p_ope);
         // Si el parámetro 'ope' no está vacío, realiza diferentes acciones dependiendo de su valor
         if (!empty($p_ope)) {
             if ($p_ope == 'filterall') {
@@ -43,6 +48,8 @@ switch ($method) {
             } elseif ($p_ope == 'filterId') {
                 // Si 'ope' es 'filterId', llama a la función filterId
                 filterId($input);
+            } elseif ($p_ope == 'lastid') {
+                lastid($input);
             } elseif ($p_ope == 'filterSearch') {
                 // Si 'ope' es 'filterSearch', llama a la función filterPaginateAll
                 filterPaginateAll($input);
@@ -53,9 +60,11 @@ switch ($method) {
         // Si el método es POST, llama a la función insert
         insert($input);
         break;
+    /// La FUncion PUT de este elemento queda restringido, solicitar a Seg_imgproducPutContreller.php
     case 'PUT':
-        // Si el método es PUT, llama a la función update
-        update($input);
+        //    // Si el método es PUT, llama a la función update
+        //    update($input);
+        echo 'funcion put anulado en este controller';
         break;
     case 'DELETE':
         // Si el método es DELETE, llama a la función delete
@@ -67,7 +76,8 @@ switch ($method) {
         break;
 }
 // Función para obtener todas las imagenes
-function filterAll($input) {
+function filterAll($input)
+{
     // Crea un nuevo objeto Seg_imgproducModel
     $objFactura = new Seg_imgproducModel();
     // Llama a la función findAll del objeto Seg_imgproducModel
@@ -76,7 +86,8 @@ function filterAll($input) {
     echo json_encode($var);
 }
 // Función para obtener una factura por su ID
-function filterId($input) {
+function filterId($input)
+{
     // Obtiene el parámetro 'id' de la petición
     $p_id = !empty($input['idimg']) ? $input['idimg'] : $_GET['idimg'];
     // Crea un nuevo objeto Seg_imgproducModel
@@ -86,8 +97,16 @@ function filterId($input) {
     // Imprime el resultado en formato JSON
     echo json_encode($var);
 }
+function lastid($input)
+{
+    $objId = new Seg_imgproducModel();
+    $var = $objId->getLastInsertId();
+    echo json_encode($var);
+
+}
 // Función para obtener todas las imagenes con paginación y filtrado
-function filterPaginateAll($input) {
+function filterPaginateAll($input)
+{
     // Obtiene los parámetros 'page' y 'filter' de la petición
     $page = !empty($input['page']) ? $input['page'] : $_GET['page'];
     // Obtiene el parámetro 'filter' de la petición
@@ -110,35 +129,38 @@ function filterPaginateAll($input) {
 
 // Función para insertar una nueva imagen
 // necesita dos parametros, el primero es el nombre de la imagen y el segundo es la ruta de la imagen
-function insert($input) {
+function insert($input)
+{
     // echo json_encode($_FILES["imagen"]);
-    echo json_encode(!empty($_FILES["imagen"]));
+    //echo json_encode(!empty($_FILES["imagen"]));
     // Verifica si el formulario ha sido enviado
-    if(!empty($_FILES["imagen"]["tmp_name"])) {
+    if (!empty($_FILES["imagen"]["tmp_name"])) {
         // Obtiene los parámetros de la petición
         $imagen = $_FILES["imagen"]["tmp_name"];
         // Obtiene el nombre, tipo y tamaño de la imagen
         $nombreImagen = $_FILES["imagen"]["name"];
         $tipoImagen = strtolower(pathinfo($nombreImagen, PATHINFO_EXTENSION));
         $sizeImagen = $_FILES["imagen"]["size"];
-        $directorio = "/archivos/";
+        $directorio = "archivos/";
 
         // Verifica el tipo de imagen
         if (($tipoImagen == "jpg" || $tipoImagen == "jpeg" || $tipoImagen == "png" || $tipoImagen == "gif") && $sizeImagen < 5000000) {
             // Crea un nuevo objeto Seg_imgproducModel
             $objImagenproduc = new Seg_imgproducModel();
             // Inserta un nuevo registro vacío para obtener el ID
-            $var = $objImagenproduc->insert("");
-
+            $var = $objImagenproduc->insert("arh");
+            //echo json_encode(["bandera1"]);
             if ($var) {
                 $idRegistro = $objImagenproduc->getLastInsertId();  // Método para obtener el último ID insertado
-                $ruta = $directorio.$idRegistro.".".$tipoImagen;
+                // Convertir $idRegistro a array y extraer last_id
+                $lastId = $idRegistro['DATA'][0]['last_id'];
 
+                $ruta = $directorio . $lastId . "." . $tipoImagen;
                 // Actualiza el registro con la ruta de la imagen
-                $actualizarImagen = $objImagenproduc->update($idRegistro, $ruta);
-
+                $actualizarImagen = $objImagenproduc->update($lastId, $ruta);
+                //echo json_encode(["bandera4"]);
                 // Mueve la imagen al directorio especificado
-                if (move_uploaded_file($imagen, $ruta)) {
+                if (move_uploaded_file($imagen, "../" . $ruta)) {
                     echo json_encode(["success" => "Imagen subida correctamente"]);
                 } else {
                     echo json_encode(["error" => "Error al subir la imagen"]);
@@ -156,65 +178,69 @@ function insert($input) {
     }
 }
 
-// Función para actualizar una imagen existente
-function update($input) {
-    // Obtiene los parámetros de la petición de la imagen a actualizar
-    $p_idimg = !empty($input['idimg']) ? $input['idimg'] : $_POST['idimg'];
-    $nombreActual = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];
+// //   FUNCION PUT ANULADO EN ESTE DOCUMENTO, REDIRIGIR A SEG_IMGPRODUCPUTCONTROLLER
+// function update($input)
+//  {
+//     // Obtiene los parámetros de la petición de la imagen a actualizar
+//     $p_idimg = !empty($input['last_id']) ? $input['last_id'] : $_POST['last_id'];
+//     $nombreActual = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];
 
-    // Verifica si el formulario ha sido enviado y si hay una imagen nueva
-    if(!empty($_FILES["imagen"]["tmp_name"])) {
-        $imagen = $_FILES["imagen"]["tmp_name"];
-        $nombreImagen = $_FILES["imagen"]["name"];
-        $tipoImagen = strtolower(pathinfo($nombreImagen, PATHINFO_EXTENSION));
-        $sizeImagen = $_FILES["imagen"]["size"];
-        $directorio = "/archivos/";
+//     // Verifica si el formulario ha sido enviado y si hay una imagen nueva
 
-        // Verifica si el archivo es una imagen válida y su tamaño
-        if(($tipoImagen == "jpg" || $tipoImagen == "jpeg" || $tipoImagen == "png" || $tipoImagen == "gif") && $sizeImagen < 5000000) {
-            // Intenta eliminar la imagen anterior
-            try {
-                // Verifica si la imagen anterior existe en el sistema de archivos
-                if (file_exists($nombreActual)) {
-                    // Elimina la imagen anterior del sistema de archivos
-                    unlink($nombreActual);
-                }
-            } catch (\Throwable $th) {
-                echo json_encode(["error" => "Error al eliminar la imagen anterior"]);
-                return;
-            }
+//     echo json_encode(!empty($_FILES["imagen"]));
+//     if (!empty($_FILES["imagen"]["tmp_name"])) {
+//         $imagen = $_FILES["imagen"]["tmp_name"];
+//         $nombreImagen = $_FILES["imagen"]["name"];
+//         $tipoImagen = strtolower(pathinfo($nombreImagen, PATHINFO_EXTENSION));
+//         $sizeImagen = $_FILES["imagen"]["size"];
+//         $directorio = "archivos/";
 
-            // Crea la nueva ruta de la imagen
-            $ruta = $directorio . $p_idimg . "." . $tipoImagen;
+//         // Verifica si el archivo es una imagen válida y su tamaño
+//         if (($tipoImagen == "jpg" || $tipoImagen == "jpeg" || $tipoImagen == "png" || $tipoImagen == "gif") && $sizeImagen < 5000000) {
+//             // Intenta eliminar la imagen anterior
+//             try {
+//                 // Verifica si la imagen anterior existe en el sistema de archivos
+//                 if (file_exists("../" . $nombreActual)) {
+//                     // Elimina la imagen anterior del sistema de archivos
+//                     unlink($nombreActual);
+//                 }
+//             } catch (\Throwable $th) {
+//                 echo json_encode(["error" => "Error al eliminar la imagen anterior"]);
+//                 return;
+//             }
 
-            // Mueve la nueva imagen al directorio especificado
-            if (move_uploaded_file($imagen, $ruta)) {
-                // Crea un nuevo objeto Seg_imgproducModel
-                $objImagenproduc = new Seg_imgproducModel();
-                // Llama a la función update del objeto Seg_imgproducModel
-                $var = $objImagenproduc->update($p_idimg, $ruta);
+//             // Crea la nueva ruta de la imagen
+//             $ruta = $directorio . $p_idimg . "." . $tipoImagen;
 
-                // Verifica si la actualización en la base de datos fue exitosa
-                if ($var) {
-                    echo json_encode(["success" => "Imagen actualizada correctamente"]);
-                } else {
-                    echo json_encode(["error" => "Error al actualizar el registro de la imagen en la base de datos"]);
-                }
-            } else {
-                echo json_encode(["error" => "Error al subir la nueva imagen"]);
-            }
-        } else {
-            echo json_encode(["error" => "Formato de imagen no permitido o tamaño demasiado grande"]);
-        }
-    } else {
-        echo json_encode(["error" => "No se ha enviado ninguna imagen"]);
-    }
-}
+//             // Mueve la nueva imagen al directorio especificado
+//             if (move_uploaded_file($imagen, "../" . $ruta)) {
+//                 // Crea un nuevo objeto Seg_imgproducModel
+//                 $objImagenproduc = new Seg_imgproducModel();
+//                 // Llama a la función update del objeto Seg_imgproducModel
+//                 $var = $objImagenproduc->update($p_idimg, $ruta);
+
+//                 // Verifica si la actualización en la base de datos fue exitosa
+//                 if ($var) {
+//                     echo json_encode(["success" => "Imagen actualizada correctamente"]);
+//                 } else {
+//                     echo json_encode(["error" => "Error al actualizar el registro de la imagen en la base de datos"]);
+//                 }
+//             } else {
+//                 echo json_encode(["error" => "Error al subir la nueva imagen"]);
+//             }
+//         } else {
+//             echo json_encode(["error" => "Formato de imagen no permitido o tamaño demasiado grande"]);
+//         }
+//     } else {
+//         echo json_encode(["error" => "No se ha enviado ninguna imagen"]);
+//     }
+// }
 
 
 
 // Función para eliminar una imagen
-function delete($input) {
+function delete($input)
+{
     // Obtiene el parámetro 'id' de la petición
     $p_idimg = !empty($input['id']) ? $input['id'] : $_POST['id'];
     $nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];
@@ -222,7 +248,7 @@ function delete($input) {
     // Elimina la imagen del sistema de archivos
     try {
         // Verifica si la imagen existe en el sistema de archivos
-        if (file_exists($nombre)) {
+        if (file_exists("../" . $nombre)) {
             // Elimina la imagen del sistema de archivos
             unlink($nombre);
         } else {
@@ -249,7 +275,5 @@ function delete($input) {
         echo json_encode(["error" => "Error al eliminar la imagen de la base de datos"]);
     }
 
-    // Imprime el resultado en formato JSON
-    ///echo json_encode($var);
 }
 ?>

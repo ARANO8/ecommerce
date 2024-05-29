@@ -1,27 +1,31 @@
-<?php 
+<?php
 // Incluye el archivo ModeloBasePDO.php que contiene la clase base para la interacción con la base de datos
 include_once "../core/ModeloBasePDO.php";
 
 // Define la clase Seg_imgproducModel que extiende de ModeloBasePDO
-class Seg_imgproducModel extends ModeloBasePDO {
+class Seg_imgproducModel extends ModeloBasePDO
+{
 
     // Constructor de la clase
-    public function __construct(){
+    public function __construct()
+    {
         // Llama al constructor de la clase padre
         parent::__construct();
     }
 
     // Método para obtener todas las imagenes
-    public function findAll(){
+    public function findAll()
+    {
         // Consulta SQL para seleccionar todos los campos de la tabla imagenes
-        $sql = "SELECT idimg, rutaimagen FROM imgproduc"; 
+        $sql = "SELECT idimg, rutaimagen FROM imgproduc";
         $param = array();
         // Ejecuta la consulta y devuelve el resultado
         return parent::gselect($sql, $param);
     }
 
     // Método para obtener una imagen por su ID
-    public function findId($p_id){
+    public function findId($p_id)
+    {
         // Consulta SQL para seleccionar una imagen por su ID
         $sql = "SELECT idimg, rutaimagen
                 FROM imgproduc
@@ -34,7 +38,8 @@ class Seg_imgproducModel extends ModeloBasePDO {
     }
 
     // Método para obtener todas las imagenes con paginación y filtrado
-    public function findPaginateAll($p_filtro, $p_limit, $p_offset){
+    public function findPaginateAll($p_filtro, $p_limit, $p_offset)
+    {
         // Consulta SQL para seleccionar todas las imagenes con paginación y filtrado
         $sql = "SELECT idimg, rutaimagen
                 FROM imgproduc
@@ -66,7 +71,9 @@ class Seg_imgproducModel extends ModeloBasePDO {
     }
 
     // Método para insertar una nueva imagen
-    public function insert($p_rutaimagen){
+
+    public function insert($p_rutaimagen)
+    {
         // Consulta SQL para insertar una nueva imagen
         $sql = "INSERT INTO imgproduc (rutaimagen) VALUES (:p_rutaimagen);";
         $param = array();
@@ -77,7 +84,8 @@ class Seg_imgproducModel extends ModeloBasePDO {
     }
 
     // Método para actualizar una imagen
-    public function update($p_idimg, $p_rutaimagen){
+    public function update($p_idimg, $p_rutaimagen)
+    {
         // Consulta SQL para actualizar una imagen
         $sql = "UPDATE imgproduc SET
                 rutaimagen = :p_rutaimagen
@@ -91,7 +99,8 @@ class Seg_imgproducModel extends ModeloBasePDO {
     }
 
     // Método para eliminar una imagen
-    public function delete($p_idimg){
+    public function delete($p_idimg)
+    {
         // Consulta SQL para eliminar una imagen
         $sql = "DELETE FROM imgproduc WHERE idimg = :p_idimg;";
         $param = array();
@@ -99,6 +108,11 @@ class Seg_imgproducModel extends ModeloBasePDO {
         array_push($param, [':p_idimg', $p_idimg, PDO::PARAM_INT]);
         // Ejecuta la consulta y devuelve el resultado
         return parent::gdelete($sql, $param);
+    }
+    public function getLastInsertId()
+    {
+        $sql = "SELECT MAX(idimg) AS last_id FROM imgproduc;";
+        return parent::glastid($sql);
     }
 }
 ?>
