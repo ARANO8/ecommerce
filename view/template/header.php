@@ -143,20 +143,20 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo ROOT_VIEW; ?>/login/login.php" role="button">
+          <a class="nav-link" href="<?php echo HTTP_BASE; ?>/login/login" role="button">
             <i class="far fa-user"></i> Iniciar Sesion
           </a>
         </li>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Ajustes
-          </button>
+          </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </div>
+        </li>
       </ul>
     </nav>
 
