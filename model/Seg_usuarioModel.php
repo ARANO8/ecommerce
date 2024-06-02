@@ -53,7 +53,7 @@ class Seg_usuarioModel extends ModeloBasePDO
         array_push($param, [':p_correo', $p_correo, PDO::PARAM_STR]);
         array_push($param, [':p_user', $p_user, PDO::PARAM_STR]);
         array_push($param, [':p_password', $p_password, PDO::PARAM_STR]);
-        array_push($param, [':p_direccion', $p_direccion, PDO::PARAM_INT]);
+        array_push($param, [':p_direccion', $p_direccion, PDO::PARAM_STR]);
         array_push($param, [':p_fotoperfil', $p_fotoperfil, PDO::PARAM_STR]);
         array_push($param, [':p_cliente', $p_cliente, PDO::PARAM_STR]);
         array_push($param, [':p_vendedor', $p_vendedor, PDO::PARAM_STR]);
@@ -79,7 +79,7 @@ class Seg_usuarioModel extends ModeloBasePDO
         array_push($param, [':p_correo', $p_correo, PDO::PARAM_STR]);
         array_push($param, [':p_user', $p_user, PDO::PARAM_STR]);
         array_push($param, [':p_password', $p_password, PDO::PARAM_STR]);
-        array_push($param, [':p_direccion', $p_direccion, PDO::PARAM_INT]);
+        array_push($param, [':p_direccion', $p_direccion, PDO::PARAM_STR]);
         array_push($param, [':p_fotoperfil', $p_fotoperfil, PDO::PARAM_STR]);
         array_push($param, [':p_cliente', $p_cliente, PDO::PARAM_STR]);
         array_push($param, [':p_vendedor', $p_vendedor, PDO::PARAM_STR]);
@@ -110,18 +110,16 @@ class Seg_usuarioModel extends ModeloBasePDO
     }
 
     //Registra un nuevo usuario sin foto de perfil
-    public function register($p_nombre, $p_correo, $p_user, $p_password, $p_direccion, $p_cliente, $p_vendedor)
+    public function register($p_nombre, $p_correo, $p_user, $p_password, $p_direccion)
     {
-        $sql = " INSERT INTO usuario(nombre, correo, user, password, direccion, cliente, vendedor) 
-            VALUES (:p_nombre, :p_correo, :p_user, :p_password, :p_direccion, :p_cliente, :p_vendedor) ";
+        $sql = " INSERT INTO usuario(nombre, correo, user, password, direccion) 
+            VALUES (:p_nombre, :p_correo, :p_user, :p_password, :p_direccion) ";
         $param = array();
         array_push($param, [':p_nombre', $p_nombre, PDO::PARAM_STR]);
         array_push($param, [':p_correo', $p_correo, PDO::PARAM_STR]);
         array_push($param, [':p_user', $p_user, PDO::PARAM_STR]);
         array_push($param, [':p_password', $p_password, PDO::PARAM_STR]);
-        array_push($param, [':p_direccion', $p_direccion, PDO::PARAM_INT]);
-        array_push($param, [':p_cliente', $p_cliente, PDO::PARAM_STR]);
-        array_push($param, [':p_vendedor', $p_vendedor, PDO::PARAM_STR]);
+        array_push($param, [':p_direccion', $p_direccion, PDO::PARAM_STR]);
 
         return parent::ginsert($sql, $param);
     }

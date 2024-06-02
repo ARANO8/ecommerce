@@ -8,9 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $p_contrasena1 = $_POST['psw1'];
     $p_user = $_POST['user'];
     $p_direccion = $_POST['ubicacion'];
-    $p_cliente = isset($_POST['cliente']) ? $_POST['cliente'] : 0;
-    $p_vendedor = isset($_POST['vendedor']) ? $_POST['vendedor'] : 0;
-    var_dump($_POST);
     //Validar
     try {
         $data = [
@@ -20,8 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'user' => $p_user,
             'password' => $p_contrasena,
             'direccion' => $p_direccion,
-            'cliente' => $p_cliente,
-            'vendedor' => $p_vendedor,
         ];
         $context = stream_context_create([
             'http' => [
@@ -123,24 +118,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
 
-                    <div class="container">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="clienteCheck" name="cliente" value="1">
-                                <label class="custom-control-label" for="clienteCheck">
-                                    Soy Cliente
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="vendedorCheck" name="vendedor" value="1">
-                                <label class="custom-control-label" for="vendedorCheck">
-                                    Soy Vendedor
-                                </label>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">

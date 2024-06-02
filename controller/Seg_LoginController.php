@@ -64,10 +64,8 @@ function register($input)
     $p_password = hash('sha512', md5($p_password));
 
     $p_direccion = !empty($input['direccion']) ? $input['direccion'] : $_POST['direccion'];;
-    $p_cliente = !empty($input['cliente']) ? $input['cliente'] : $_POST['cliente'];;
-    $p_vendedor = !empty($input['vendedor']) ? $input['vendedor'] : $_POST['vendedor'];;
     $tseg_login = new Seg_usuarioModel();
-    $var = $tseg_login->register($p_nombre, $p_correo, $p_user, $p_password, $p_direccion, $p_cliente, $p_vendedor);
+    $var = $tseg_login->register($p_nombre, $p_correo, $p_user, $p_password, $p_direccion);
 
     echo json_encode($var);
 }

@@ -3,8 +3,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $ope = 'login';
   $p_correo_electronico = $_POST['email'];
   $p_contrasena = $_POST['psw'];
-  var_dump($p_correo_electronico);
-  var_dump($p_contrasena);
   //Validar
   try {
     $data = [
