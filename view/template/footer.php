@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col-md-3 col-xs-6">
             <div class="footer">
-              <h3 class="footer-title">About Us</h3>
+              <h3 class="footer-title">Acerca de Nosotros</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
               <ul class="footer-links">
                 <li><a href="#"><i class="fa fa-map-marker"></i>UMSA Carrera De Informatica</a></li>
@@ -21,7 +21,7 @@
 
           <div class="col-md-3 col-xs-6">
             <div class="footer">
-              <h3 class="footer-title">Categories</h3>
+              <h3 class="footer-title">Categorias</h3>
               <ul class="footer-links">
                 <li><a href="#">Hot deals</a></li>
                 <li><a href="#">Laptops</a></li>
@@ -36,10 +36,10 @@
 
           <div class="col-md-3 col-xs-6">
             <div class="footer">
-              <h3 class="footer-title">Information</h3>
+              <h3 class="footer-title">Informacion</h3>
               <ul class="footer-links">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Acerca de Nosotros</a></li>
+                <li><a href="#">Contactanos</a></li>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Orders and Returns</a></li>
                 <li><a href="#">Terms & Conditions</a></li>
@@ -49,7 +49,7 @@
 
           <div class="col-md-3 col-xs-6">
             <div class="footer">
-              <h3 class="footer-title">Service</h3>
+              <h3 class="footer-title">Servicios</h3>
               <ul class="footer-links">
                 <li><a href="#">My Account</a></li>
                 <li><a href="#">View Cart</a></li>
@@ -84,7 +84,7 @@
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
               Copyright &copy;<script>
                 document.write(new Date().getFullYear());
-              </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+              </script> All rights reserved</a>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </span>
           </div>
