@@ -44,13 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Log in</title>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
-  <link rel="stylesheet" href="<?php echo URL_RESOURCES; ?>adminlte/plugins/fontawesome-free/css/all.min.css">
+  <script src="https://kit.fontawesome.com/f0d04e9f6f.js" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="<?php echo URL_RESOURCES; ?>adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo URL_RESOURCES; ?>css/icheck-bootstrap.min.css">
 
-  <link rel="stylesheet" href="<?php echo URL_RESOURCES; ?>adminlte/dist/css/adminlte.min.css?v=3.2.0">
+  <link rel="stylesheet" href="<?php echo URL_RESOURCES; ?>css/adminlte.min.css?v=3.2.0">
 </head>
 
 <body class="login-page" style="min-height: 496.8px;">
@@ -117,9 +117,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </div>
 
 
-  <script src="<?php echo URL_RESOURCES; ?>adminlte/plugins/jquery/jquery.min.js"></script>
+  <script src="<?php echo URL_RESOURCES; ?>js/jquery.min.js"></script>
 
-  <script src="<?php echo URL_RESOURCES; ?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo URL_RESOURCES; ?>js/bootstrap.bundle.min.js"></script>
 
   <script src="<?php echo URL_RESOURCES; ?>adminlte/dist/js/adminlte.min.js?v=3.2.0"></script>
 
