@@ -95,7 +95,7 @@
               <div>
                 <a href="#">
                   <i class="fa fa-heart-o"></i>
-                  <span>Your Wishlist</span>
+                  <span>Guardados</span>
                   <div class="qty">2</div>
                 </a>
               </div>

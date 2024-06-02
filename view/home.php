@@ -13,8 +13,8 @@
           <li><a href="#">Categories</a></li>
           <li><a href="#">Laptops</a></li>
           <li><a href="#">Smartphones</a></li>
-          <li><a href="#">Cameras</a></li>
-          <li><a href="#">Accessories</a></li>
+          <li><a href="#">Camaras</a></li>
+          <li><a href="#">Accesorios</a></li>
         </ul>
         <!-- /NAV -->
       </div>
@@ -38,7 +38,7 @@
             </div>
             <div class="shop-body">
               <h3>Laptop<br>Collection</h3>
-              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="#" class="cta-btn">Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -51,8 +51,8 @@
               <img src="<?php echo URL_RESOURCES; ?>img/shop03.png" alt="">
             </div>
             <div class="shop-body">
-              <h3>Accessories<br>Collection</h3>
-              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+              <h3>Accesorios<br>Collection</h3>
+              <a href="#" class="cta-btn">Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -65,8 +65,8 @@
               <img src="<?php echo URL_RESOURCES; ?>img/shop02.png" alt="">
             </div>
             <div class="shop-body">
-              <h3>Cameras<br>Collection</h3>
-              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+              <h3>Camaras<br>Collection</h3>
+              <a href="#" class="cta-btn">Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -84,7 +84,6 @@
     <div class="container">
       <!-- row -->
       <div class="row">
-
         <!-- section title -->
         <div class="col-md-12">
           <div class="section-title">
@@ -93,8 +92,8 @@
               <ul class="section-tab-nav tab-nav">
                 <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
                 <li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-                <li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-                <li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+                <li><a data-toggle="tab" href="#tab1">Camaras</a></li>
+                <li><a data-toggle="tab" href="#tab1">Accesorios</a></li>
               </ul>
             </div>
           </div>
@@ -118,7 +117,7 @@
                       </div>
                     </div>
                     <div class="product-body">
-                      <p class="product-category">Category</p>
+                      <p class="product-Categoria">Categoria</p>
                       <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                       <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                       <div class="product-rating">
@@ -135,7 +134,7 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                     </div>
                   </div>
                   <!-- /product -->
@@ -149,7 +148,7 @@
                       </div>
                     </div>
                     <div class="product-body">
-                      <p class="product-category">Category</p>
+                      <p class="product-Categoria">Categoria</p>
                       <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                       <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                       <div class="product-rating">
@@ -166,7 +165,7 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                     </div>
                   </div>
                   <!-- /product -->
@@ -180,7 +179,7 @@
                       </div>
                     </div>
                     <div class="product-body">
-                      <p class="product-category">Category</p>
+                      <p class="product-Categoria">Categoria</p>
                       <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                       <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                       <div class="product-rating">
@@ -192,7 +191,7 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                     </div>
                   </div>
                   <!-- /product -->
@@ -203,7 +202,7 @@
                       <img src="<?php echo URL_RESOURCES; ?>img/product04.png" alt="">
                     </div>
                     <div class="product-body">
-                      <p class="product-category">Category</p>
+                      <p class="product-Categoria">Categoria</p>
                       <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                       <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                       <div class="product-rating">
@@ -220,7 +219,7 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                     </div>
                   </div>
                   <!-- /product -->
@@ -231,7 +230,7 @@
                       <img src="<?php echo URL_RESOURCES; ?>img/product05.png" alt="">
                     </div>
                     <div class="product-body">
-                      <p class="product-category">Category</p>
+                      <p class="product-Categoria">Categoria</p>
                       <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                       <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                       <div class="product-rating">
@@ -248,7 +247,7 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                     </div>
                   </div>
                   <!-- /product -->
@@ -303,7 +302,7 @@
             </ul>
             <h2 class="text-uppercase">hot deal this week</h2>
             <p>New Collection Up to 50% OFF</p>
-            <a class="primary-btn cta-btn" href="#">Shop now</a>
+            <a class="primary-btn cta-btn" href="#">Comprar Ahora</a>
           </div>
         </div>
       </div>
@@ -328,8 +327,8 @@
               <ul class="section-tab-nav tab-nav">
                 <li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
                 <li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
-                <li><a data-toggle="tab" href="#tab2">Cameras</a></li>
-                <li><a data-toggle="tab" href="#tab2">Accessories</a></li>
+                <li><a data-toggle="tab" href="#tab2">Camaras</a></li>
+                <li><a data-toggle="tab" href="#tab2">Accesorios</a></li>
               </ul>
             </div>
           </div>
@@ -353,7 +352,7 @@
                       </div>
                     </div>
                     <div class="product-body">
-                      <p class="product-category">Category</p>
+                      <p class="product-Categoria">Categoria</p>
                       <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                       <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                       <div class="product-rating">
@@ -370,7 +369,7 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                     </div>
                   </div>
                   <!-- /product -->
@@ -384,7 +383,7 @@
                       </div>
                     </div>
                     <div class="product-body">
-                      <p class="product-category">Category</p>
+                      <p class="product-Categoria">Categoria</p>
                       <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                       <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                       <div class="product-rating">
@@ -401,7 +400,7 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                     </div>
                   </div>
                   <!-- /product -->
@@ -415,7 +414,7 @@
                       </div>
                     </div>
                     <div class="product-body">
-                      <p class="product-category">Category</p>
+                      <p class="product-Categoria">Categoria</p>
                       <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                       <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                       <div class="product-rating">
@@ -427,7 +426,7 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                     </div>
                   </div>
                   <!-- /product -->
@@ -438,7 +437,7 @@
                       <img src="<?php echo URL_RESOURCES; ?>img/product09.png" alt="">
                     </div>
                     <div class="product-body">
-                      <p class="product-category">Category</p>
+                      <p class="product-Categoria">Categoria</p>
                       <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                       <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                       <div class="product-rating">
@@ -455,7 +454,7 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                     </div>
                   </div>
                   <!-- /product -->
@@ -466,7 +465,7 @@
                       <img src="<?php echo URL_RESOURCES; ?>img/product01.png" alt="">
                     </div>
                     <div class="product-body">
-                      <p class="product-category">Category</p>
+                      <p class="product-Categoria">Categoria</p>
                       <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                       <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                       <div class="product-rating">
@@ -483,7 +482,7 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                     </div>
                   </div>
                   <!-- /product -->
@@ -524,7 +523,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product07.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -537,7 +536,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product08.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -550,7 +549,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product09.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -565,7 +564,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product01.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -578,7 +577,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product02.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -591,7 +590,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product03.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -617,7 +616,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product04.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -630,7 +629,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product05.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -643,7 +642,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product06.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -658,7 +657,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product07.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -671,7 +670,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product08.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -684,7 +683,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product09.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -712,7 +711,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product01.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -725,7 +724,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product02.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -738,7 +737,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product03.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -753,7 +752,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product04.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -766,7 +765,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product05.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
@@ -779,7 +778,7 @@
                   <img src="<?php echo URL_RESOURCES; ?>img/product06.png" alt="">
                 </div>
                 <div class="product-body">
-                  <p class="product-category">Category</p>
+                  <p class="product-Categoria">Categoria</p>
                   <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
                   <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
                 </div>
