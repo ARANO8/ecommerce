@@ -48,11 +48,11 @@ if ($p_idproducto) {
                                     </div>
                                     <div class="form-group">
                                         <label for="precio">Precio</label>
-                                        <input type="number" class="form-control" name="precio" required value="<?php echo $record['precio']; ?> " disabled>
+                                        <input type="number" class="form-control" name="precio" required value="<?php echo $record['precio'];?>" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="stock">Stock</label>
-                                        <input type="number" class="form-control" name="stock" required value="<?php echo $record['stock']; ?> " disabled>
+                                        <input type="number" class="form-control" name="stock" required value="<?php echo $record['stock'];?>" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="descripcion">descripcion</label>
