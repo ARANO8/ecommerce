@@ -7,9 +7,9 @@ header("Content-Type: application/json; charset=UTF-8");
 
 session_start();
 
-require_once($_SERVER['DOCUMENT_ROOT'] . "/ecommerce/config/global.php");
+require_once ($_SERVER['DOCUMENT_ROOT'] . "/ecommerce/config/global.php");
 
-require_once(ROOT_DIR . "/model/Seg_usuarioModel.php");
+require_once (ROOT_DIR . "/model/Seg_usuarioModel.php");
 
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -23,6 +23,17 @@ try {
 }
 switch ($method) {
 
+    case 'GET': //consulta
+
+        $p_ope = !empty($input['ope']) ? $input['ope'] : $_GET['ope'];
+        if (!empty($p_ope)) {
+
+
+            if ($p_ope == 'filterall') {
+                filterAll($input);
+            }
+        }
+        break;
     case 'POST':
         $p_ope = !empty($input['ope']) ? $input['ope'] : $_POST['ope'];
         if ($p_ope == 'login') {
@@ -35,15 +46,25 @@ switch ($method) {
         break;
 }
 
-function  login($input)
+function filterAll($input)
+{
+    $tseg_usuario = new Seg_usuarioModel();
+    $var = $tseg_usuario->findall();
+    echo json_encode($var);
+}
+
+function login($input)
 {
     $p_correo = !empty($input['correo']) ? $input['correo'] : $_POST['correo'];
-    $p_password= !empty($input['password']) ? $input['password'] : $_POST['password'];
+    $p_password = !empty($input['password']) ? $input['password'] : $_POST['password'];
     $p_password = hash('sha512', md5($p_password));
     $su = new Seg_usuarioModel();
     $var = $su->verificarlogin($p_correo, $p_password);
+    //echo json_encode(count($var));
+    //    var_dump($var['DATA']);
     if (count($var['DATA']) > 0) {
         $_SESSION['login'] = $var['DATA'][0];
+        echo "ok";
         echo json_encode($var);
         exit();
     } else {
@@ -56,15 +77,20 @@ function  login($input)
 }
 function register($input)
 {
-    $p_nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];;
-    $p_correo = !empty($input['correo']) ? $input['correo'] : $_POST['correo'];;
-    $p_user = !empty($input['user']) ? $input['user'] : $_POST['user'];;
+    $p_nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];
+    ;
+    $p_correo = !empty($input['correo']) ? $input['correo'] : $_POST['correo'];
+    ;
+    $p_user = !empty($input['user']) ? $input['user'] : $_POST['user'];
+    ;
 
-    $p_password = !empty($input['password']) ? $input['password'] : $_POST['password'];;
+    $p_password = !empty($input['password']) ? $input['password'] : $_POST['password'];
+    ;
     $p_password = hash('sha512', md5($p_password));
 
-    $p_direccion = !empty($input['direccion']) ? $input['direccion'] : $_POST['direccion'];;
-    $tseg_login = new Seg_usuarioModel();
+    $p_direccion = !empty($input['direccion']) ? $input['direccion'] : $_POST['direccion'];
+    ;
+    $tseg_login = new Seg_usuarioModel();//p_user, p_direccion
     $var = $tseg_login->register($p_nombre, $p_correo, $p_user, $p_password, $p_direccion);
 
     echo json_encode($var);

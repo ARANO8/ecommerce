@@ -25,12 +25,12 @@ class Seg_usuarioModel extends ModeloBasePDO
         array_push($param, [':p_filtro', $p_filtro, PDO::PARAM_STR]);
         array_push($param, [':p_limit', $p_limit, PDO::PARAM_INT]);
         array_push($param, [':p_offset', $p_offset, PDO::PARAM_INT]);
-        $var =  parent::gselect($sql, $param);
+        $var = parent::gselect($sql, $param);
         $sqlCount = "SELECT count(1) as cant FROM usuario 
         WHERE upper(concat(IFNULL(id,''),IFNULL(nombre,''),IFNULL(correo,''),IFNULL(user,''),IFNULL(password,''),IFNULL(direccion,''),IFNULL(fotoperfil,''),IFNULL(cliente,''),IFNULL(vendedor,''))) like  CONCAT('%',upper(IFNULL(:p_filtro,'' )), '%') ";
         $param = array();
         array_push($param, [':p_filtro', $p_filtro, PDO::PARAM_STR]);
-        $var1 =  parent::gselect($sqlCount, $param);
+        $var1 = parent::gselect($sqlCount, $param);
         $var['LENGTH'] = $var1['DATA'][0]['cant'];
         return $var;
     }
@@ -99,10 +99,12 @@ class Seg_usuarioModel extends ModeloBasePDO
     //Verifica la sesion de un usuario por su email y password
     public function verificarlogin($p_correo, $p_password)
     {
-        $sql = "SELECT nombre, correo, user, direccion, fotoperfil, cliente, vendedor
-        FROM usuario
-        WHERE correo = :p_correo AND 
-        password = :p_password";
+        // $sql = "SELECT correo, password
+        // FROM usuario
+        // WHERE correo = :p_correo AND password = :p_password";
+        $sql = "SELECT id, nombre, correo, user, password, direccion, fotoperfil, cliente, vendedor 
+        FROM usuario 
+        WHERE correo = :p_correo AND password = :p_password";
         $param = array();
         array_push($param, [':p_correo', $p_correo, PDO::PARAM_STR]);
         array_push($param, [':p_password', $p_password, PDO::PARAM_STR]);
@@ -112,8 +114,8 @@ class Seg_usuarioModel extends ModeloBasePDO
     //Registra un nuevo usuario sin foto de perfil
     public function register($p_nombre, $p_correo, $p_user, $p_password, $p_direccion)
     {
-        $sql = " INSERT INTO usuario(nombre, correo, user, password, direccion) 
-            VALUES (:p_nombre, :p_correo, :p_user, :p_password, :p_direccion) ";
+        $sql = " INSERT INTO usuario( nombre, correo, user, password, direccion) 
+            VALUES (:p_nombre, :p_correo,:p_user, :p_password, :p_direccion) ";
         $param = array();
         array_push($param, [':p_nombre', $p_nombre, PDO::PARAM_STR]);
         array_push($param, [':p_correo', $p_correo, PDO::PARAM_STR]);
