@@ -3,6 +3,73 @@
 <!-- Conexion con el controller -->
 <?php
 // aqui va la conexion con la tabla de imagenes
+$page_img = 1;
+$ope_img = 'filterSearch';
+$filter_img = '';
+$items_per_page_img = 10;
+$total_pages_img = 1;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $page_img = isset($_POST['page']) ? $_POST['page'] : 1;
+  $filter_img = urlencode(trim(isset($_POST['filter']) ? $_POST['filter'] : ''));
+}
+$url_img = HTTP_BASE . "/controller/Seg_imgproducController.php?ope=" . $ope_img . "&page=" . $page_img . "&filter=" . $filter_img;
+$filter_img = urldecode($filter_img);
+$response_img = file_get_contents($url_img);
+
+if ($response_img === false) {
+  // Handle error in getting the response
+  die('Error fetching image data.');
+}
+
+// echo "<pre>";
+// echo "Response from API: " . htmlspecialchars($response_img) . "\n";
+// echo "</pre>";
+// Remove non-JSON content if present
+$json_start_pos = strpos($response_img, '{');
+  if ($json_start_pos !== false) {
+      $response_img = substr($response_img, $json_start_pos);
+  }
+  
+
+$responseData_img = json_decode($response_img, true);
+
+if ($responseData_img === null) {
+  // Handle JSON decoding error
+  die('Error decoding JSON response.'. json_last_error_msg());
+}
+
+$records_img = [];
+$totalItems_img = 0;
+
+if (isset($responseData_img['DATA'])) {
+  $records_img = $responseData_img['DATA'];
+}
+
+if (isset($responseData_img['LENGTH'])) {
+  $totalItems_img = $responseData_img['LENGTH'];
+}
+
+try {
+  $total_pages_img = ceil($totalItems_img / $items_per_page_img);
+} catch (Exception $e) {
+  $total_pages_img = 1;
+}
+//paginacion
+$max_links_img = 5;
+$half_max_link_img = floor($max_links_img / 2);
+$start_page_img = $page_img - $half_max_link_img;
+$end_page_img = $page_img + $half_max_link_img;
+if ($start_page_img < 1) {
+  $end_page_img += abs($start_page_img) + 1;
+  $start_page_img = 1;
+}
+if ($end_page_img > $total_pages_img) {
+  $start_page_img -= ($end_page_img - $total_pages_img);
+  $end_page_img = $total_pages_img;
+  if ($start_page_img < 1) {
+    $start_page_img = 1;
+  }
+}
 // aqui va la conexion con la tabla de los productos
 $page_prod = 1;
 $ope_prod = 'filterSearch';
@@ -12,6 +79,7 @@ $total_pages_prod = 1;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $page_prod = isset($_POST['page']) ? $_POST['page'] : 1;
   $filter_prod = urlencode(trim(isset($_POST['filter']) ? $_POST['filter'] : ''));
+  
 }
 $url_prod = HTTP_BASE . "/controller/Seg_productoController.php?ope=" . $ope_prod . "&page=" . $page_prod . "&filter=" . $filter_prod;
 $filter_prod = urldecode($filter_prod);
@@ -22,7 +90,7 @@ $totalItems_prod = $responseData_prod['LENGTH'];
 try {
   $total_pages_prod =  ceil($totalItems_prod / $items_per_page_prod);
 } catch (Exception $e) {
-  $total_pages = 1;
+  $total_pages_prod = 1;
 }
 //paginacion
 $max_links_prod = 5;
@@ -150,52 +218,41 @@ if ($end_page_prod > $total_pages_prod) {
             <div id="tab1" class="tab-pane active">
               <div class="products-slick" data-nav="#slick-nav-1">
                 <?php foreach ($records_prod as  $row) : ?>
-                  <?php //if(htmlspecialchars($row['new'])=='true'){
-                  ?>
-                  <!-- product -->
-                  <div class="product">
-                    <div class="product-img">
-                      <?php
-                        // aqui va la conexion con la tabla de imagenes
-                        $p_id_imagen = $_GET['idimg'] ?? null;
-                        $record_img = null;
-
-                        if ($p_id_imagen) {
-                          $url_img = HTTP_BASE . '/controller/Seg_imgproducController.php?ope=filterId&idimg=' . $p_id_imagen;
-                          $reponse_img = file_get_contents($url_img);
-                          $reponseData_img = json_decode($reponse_img, true);
-                          if ($reponseData_img &&  $reponseData_img['ESTADO'] == 1 && !empty($reponseData_img['DATA'])) {
-                            $record_img = $reponseData_img['DATA'];
-                            // echo $record_img;
-                          } else {
-                            $record_img = null;
-                          }
-                        }
-                        var_dump($row['idimg']);
-                      ?>
-                      <img src="<?php echo htmlspecialchars($record_img['rutaimagen']) ; ?>" alt="">
-                      <div class="product-label">
-                        <span class="new">NUEVO</span>
+                  
+                    <?php //if(htmlspecialchars($row['new'])=='true'){
+                    ?>
+                    <!-- product -->
+                    <div class="product">
+                      <div class="product-img">
+                        <?php foreach ($records_img as  $row1) : ?>
+                          <?php if (htmlspecialchars($row1['idimg'])==htmlspecialchars($row['idimg'])) {?>
+                            <img src="<?php echo HTTP_BASE . "/" .$row1['rutaimagen'];?>" alt="">
+                          <?php }?>
+                    
+                          <div class="product-label">
+                            <span class="new">NUEVO</span>
+                          </div>
+                          
+                        <?php endforeach; ?>
+                      </div>
+                      <div class="product-body">
+                        <p class="product-Categoria">Categoria</p>
+                        <h3 class="product-name"><a href="#"><?php echo htmlspecialchars($row['nombre']); ?></a></h3>
+                        <h4 class="product-price">$<?php echo htmlspecialchars($row['precio']); ?></h4>
+                        
+                        <div class="product-btns">
+                          <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                          <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                          <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                        </div>
+                      </div>
+                      <div class="add-to-cart">
+                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                       </div>
                     </div>
-                    <div class="product-body">
-                      <p class="product-Categoria">Categoria</p>
-                      <h3 class="product-name"><a href="#"><?php echo htmlspecialchars($row['nombre']); ?></a></h3>
-                      <h4 class="product-price">$<?php echo htmlspecialchars($row['precio']); ?></h4>
-                      
-                      <div class="product-btns">
-                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                      </div>
-                    </div>
-                    <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
-                    </div>
-                  </div>
-                  <!-- /product -->
-                  <?php //}
-                  ?>
+                    <!-- /product -->
+                    <?php //}
+                    ?>
                 <?php endforeach; ?>
               </div>
               <div id="slick-nav-1" class="products-slick-nav"></div>

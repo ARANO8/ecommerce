@@ -107,12 +107,12 @@ function lastid($input)
 // Función para obtener todas las imagenes con paginación y filtrado
 function filterPaginateAll($input)
 {
+    $nro_record_page = 10;
     // Obtiene los parámetros 'page' y 'filter' de la petición
     $page = !empty($input['page']) ? $input['page'] : $_GET['page'];
     // Obtiene el parámetro 'filter' de la petición
     $filter = !empty($input['filter']) ? $input['filter'] : $_GET['filter'];
     // Define el número de registros por página
-    $nro_record_page = 10;
     // Define el límite y el desplazamiento
     $p_limit = 10;
     $p_offset = 0;
