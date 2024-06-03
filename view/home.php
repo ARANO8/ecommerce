@@ -26,16 +26,16 @@ if ($response_img === false) {
 // echo "</pre>";
 // Remove non-JSON content if present
 $json_start_pos = strpos($response_img, '{');
-  if ($json_start_pos !== false) {
-      $response_img = substr($response_img, $json_start_pos);
-  }
-  
+if ($json_start_pos !== false) {
+  $response_img = substr($response_img, $json_start_pos);
+}
+
 
 $responseData_img = json_decode($response_img, true);
 
 if ($responseData_img === null) {
   // Handle JSON decoding error
-  die('Error decoding JSON response.'. json_last_error_msg());
+  die('Error decoding JSON response.' . json_last_error_msg());
 }
 
 $records_img = [];
@@ -79,7 +79,6 @@ $total_pages_prod = 1;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $page_prod = isset($_POST['page']) ? $_POST['page'] : 1;
   $filter_prod = urlencode(trim(isset($_POST['filter']) ? $_POST['filter'] : ''));
-  
 }
 $url_prod = HTTP_BASE . "/controller/Seg_productoController.php?ope=" . $ope_prod . "&page=" . $page_prod . "&filter=" . $filter_prod;
 $filter_prod = urldecode($filter_prod);
@@ -147,7 +146,7 @@ if ($end_page_prod > $total_pages_prod) {
             <img src="<?php echo URL_RESOURCES; ?>img/shop01.png" alt="">
           </div>
           <div class="shop-body">
-            <h3>Laptop<br>Collection</h3>
+            <h3>Laptop<br>Coleccion</h3>
             <a href="#" class="cta-btn">Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
@@ -161,7 +160,7 @@ if ($end_page_prod > $total_pages_prod) {
             <img src="<?php echo URL_RESOURCES; ?>img/shop03.png" alt="">
           </div>
           <div class="shop-body">
-            <h3>Accesorios<br>Collection</h3>
+            <h3>Accesorios<br>Coleccion</h3>
             <a href="#" class="cta-btn">Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
@@ -175,7 +174,7 @@ if ($end_page_prod > $total_pages_prod) {
             <img src="<?php echo URL_RESOURCES; ?>img/shop02.png" alt="">
           </div>
           <div class="shop-body">
-            <h3>Camaras<br>Collection</h3>
+            <h3>Camaras<br>Coleccion</h3>
             <a href="#" class="cta-btn">Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
@@ -218,41 +217,41 @@ if ($end_page_prod > $total_pages_prod) {
             <div id="tab1" class="tab-pane active">
               <div class="products-slick" data-nav="#slick-nav-1">
                 <?php foreach ($records_prod as  $row) : ?>
-                  
-                    <?php //if(htmlspecialchars($row['new'])=='true'){
-                    ?>
-                    <!-- product -->
-                    <div class="product">
-                      <div class="product-img">
-                        <?php foreach ($records_img as  $row1) : ?>
-                          <?php if (htmlspecialchars($row1['idimg'])==htmlspecialchars($row['idimg'])) {?>
-                            <img src="<?php echo HTTP_BASE . "/" .$row1['rutaimagen'];?>" alt="">
-                          <?php }?>
-                    
-                          <div class="product-label">
-                            <span class="new">NUEVO</span>
-                          </div>
-                          
-                        <?php endforeach; ?>
-                      </div>
-                      <div class="product-body">
-                        <p class="product-Categoria">Categoria</p>
-                        <h3 class="product-name"><a href="#"><?php echo htmlspecialchars($row['nombre']); ?></a></h3>
-                        <h4 class="product-price">$<?php echo htmlspecialchars($row['precio']); ?></h4>
-                        
-                        <div class="product-btns">
-                          <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                          <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                          <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+
+                  <?php //if(htmlspecialchars($row['new'])=='true'){
+                  ?>
+                  <!-- product -->
+                  <div class="product">
+                    <div class="product-img">
+                      <?php foreach ($records_img as  $row1) : ?>
+                        <?php if (htmlspecialchars($row1['idimg']) == htmlspecialchars($row['idimg'])) { ?>
+                          <img src="<?php echo HTTP_BASE . "/" . $row1['rutaimagen']; ?>" alt="">
+                        <?php } ?>
+
+                        <div class="product-label">
+                          <span class="new">NUEVO</span>
                         </div>
-                      </div>
-                      <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
+
+                      <?php endforeach; ?>
+                    </div>
+                    <div class="product-body">
+                      <p class="product-Categoria">Categoria</p>
+                      <h3 class="product-name"><a href="#"><?php echo htmlspecialchars($row['nombre']); ?></a></h3>
+                      <h4 class="product-price">$<?php echo htmlspecialchars($row['precio']); ?></h4>
+
+                      <div class="product-btns">
+                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
                       </div>
                     </div>
-                    <!-- /product -->
-                    <?php //}
-                    ?>
+                    <div class="add-to-cart">
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
+                    </div>
+                  </div>
+                  <!-- /product -->
+                  <?php //}
+                  ?>
                 <?php endforeach; ?>
               </div>
               <div id="slick-nav-1" class="products-slick-nav"></div>
@@ -303,8 +302,8 @@ if ($end_page_prod > $total_pages_prod) {
               </div>
             </li>
           </ul>
-          <h2 class="text-uppercase">hot deal this week</h2>
-          <p>New Collection Up to 50% OFF</p>
+          <h2 class="text-uppercase">Productos de la Semana</h2>
+          <p>Hasta con 50 % de Descuento</p>
           <a class="primary-btn cta-btn" href="#">Comprar Ahora</a>
         </div>
       </div>
@@ -345,150 +344,46 @@ if ($end_page_prod > $total_pages_prod) {
             <!-- tab -->
             <div id="tab2" class="tab-pane fade in active">
               <div class="products-slick" data-nav="#slick-nav-2">
-                <!-- product -->
-                <div class="product">
-                  <div class="product-img">
-                    <img src="<?php echo URL_RESOURCES; ?>img/product06.png" alt="">
-                    <div class="product-label">
-                      <span class="sale">-30%</span>
-                      <span class="new">NEW</span>
-                    </div>
-                  </div>
-                  <div class="product-body">
-                    <p class="product-Categoria">Categoria</p>
-                    <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                    <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <div class="product-btns">
-                      <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                      <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                      <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                    </div>
-                  </div>
-                  <div class="add-to-cart">
-                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
-                  </div>
-                </div>
-                <!-- /product -->
+                <!-- aqui va los productos nuevamente
+ -->
 
-                <!-- product -->
-                <div class="product">
-                  <div class="product-img">
-                    <img src="<?php echo URL_RESOURCES; ?>img/product07.png" alt="">
-                    <div class="product-label">
-                      <span class="new">NEW</span>
-                    </div>
-                  </div>
-                  <div class="product-body">
-                    <p class="product-Categoria">Categoria</p>
-                    <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                    <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <div class="product-btns">
-                      <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                      <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                      <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                    </div>
-                  </div>
-                  <div class="add-to-cart">
-                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
-                  </div>
-                </div>
-                <!-- /product -->
+                <?php foreach ($records_prod as  $row) : ?>
 
-                <!-- product -->
-                <div class="product">
-                  <div class="product-img">
-                    <img src="<?php echo URL_RESOURCES; ?>img/product08.png" alt="">
-                    <div class="product-label">
-                      <span class="sale">-30%</span>
-                    </div>
-                  </div>
-                  <div class="product-body">
-                    <p class="product-Categoria">Categoria</p>
-                    <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                    <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-                    <div class="product-rating">
-                    </div>
-                    <div class="product-btns">
-                      <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                      <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                      <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                    </div>
-                  </div>
-                  <div class="add-to-cart">
-                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
-                  </div>
-                </div>
-                <!-- /product -->
+                  <?php //if(htmlspecialchars($row['new'])=='true'){
+                  ?>
+                  <!-- product -->
+                  <div class="product">
+                    <div class="product-img">
+                      <?php foreach ($records_img as  $row1) : ?>
+                        <?php if (htmlspecialchars($row1['idimg']) == htmlspecialchars($row['idimg'])) { ?>
+                          <img src="<?php echo HTTP_BASE . "/" . $row1['rutaimagen']; ?>" alt="">
+                        <?php } ?>
 
-                <!-- product -->
-                <div class="product">
-                  <div class="product-img">
-                    <img src="<?php echo URL_RESOURCES; ?>img/product09.png" alt="">
-                  </div>
-                  <div class="product-body">
-                    <p class="product-Categoria">Categoria</p>
-                    <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                    <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <div class="product-btns">
-                      <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                      <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                      <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                    </div>
-                  </div>
-                  <div class="add-to-cart">
-                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
-                  </div>
-                </div>
-                <!-- /product -->
+                        <div class="product-label">
+                          <span class="new">NUEVO</span>
+                        </div>
 
-                <!-- product -->
-                <div class="product">
-                  <div class="product-img">
-                    <img src="<?php echo URL_RESOURCES; ?>img/product01.png" alt="">
-                  </div>
-                  <div class="product-body">
-                    <p class="product-Categoria">Categoria</p>
-                    <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                    <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
+                      <?php endforeach; ?>
                     </div>
-                    <div class="product-btns">
-                      <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                      <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                      <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                    <div class="product-body">
+                      <p class="product-Categoria">Categoria</p>
+                      <h3 class="product-name"><a href="#"><?php echo htmlspecialchars($row['nombre']); ?></a></h3>
+                      <h4 class="product-price">$<?php echo htmlspecialchars($row['precio']); ?></h4>
+
+                      <div class="product-btns">
+                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                      </div>
+                    </div>
+                    <div class="add-to-cart">
+                      <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
                     </div>
                   </div>
-                  <div class="add-to-cart">
-                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar</button>
-                  </div>
-                </div>
-                <!-- /product -->
+                  <!-- /product -->
+                  <?php //}
+                  ?>
+                <?php endforeach; ?>
               </div>
               <div id="slick-nav-2" class="products-slick-nav"></div>
             </div>
@@ -504,299 +399,7 @@ if ($end_page_prod > $total_pages_prod) {
 </div>
 <!-- /SECTION -->
 
-<!-- SECTION -->
-<div class="section">
-  <!-- container -->
-  <div class="container">
-    <!-- row -->
-    <div class="row">
-      <div class="col-md-4 col-xs-6">
-        <div class="section-title">
-          <h4 class="title">Mas Vendidos</h4>
-          <div class="section-nav">
-            <div id="slick-nav-3" class="products-slick-nav"></div>
-          </div>
-        </div>
 
-        <div class="products-widget-slick" data-nav="#slick-nav-3">
-          <div>
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product07.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product08.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product09.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- product widget -->
-          </div>
-
-          <div>
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product01.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product02.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product03.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- product widget -->
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 col-xs-6">
-        <div class="section-title">
-          <h4 class="title">Mas Vendidos</h4>
-          <div class="section-nav">
-            <div id="slick-nav-4" class="products-slick-nav"></div>
-          </div>
-        </div>
-
-        <div class="products-widget-slick" data-nav="#slick-nav-4">
-          <div>
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product04.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product05.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product06.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- product widget -->
-          </div>
-
-          <div>
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product07.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product08.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product09.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- product widget -->
-          </div>
-        </div>
-      </div>
-
-      <div class="clearfix visible-sm visible-xs"></div>
-
-      <div class="col-md-4 col-xs-6">
-        <div class="section-title">
-          <h4 class="title">Mas Vendidos</h4>
-          <div class="section-nav">
-            <div id="slick-nav-5" class="products-slick-nav"></div>
-          </div>
-        </div>
-
-        <div class="products-widget-slick" data-nav="#slick-nav-5">
-          <div>
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product01.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product02.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product03.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- product widget -->
-          </div>
-
-          <div>
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product04.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product05.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- /product widget -->
-
-            <!-- product widget -->
-            <div class="product-widget">
-              <div class="product-img">
-                <img src="<?php echo URL_RESOURCES; ?>img/product06.png" alt="">
-              </div>
-              <div class="product-body">
-                <p class="product-Categoria">Categoria</p>
-                <h3 class="product-name"><a href="#">Nombre de Producto</a></h3>
-                <h4 class="product-price">$000.00 <del class="product-old-price">$000.00</del></h4>
-              </div>
-            </div>
-            <!-- product widget -->
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <!-- /row -->
-  </div>
-  <!-- /container -->
-</div>
-<!-- /SECTION -->
 
 <!-- NEWSLETTER -->
 <div id="newsletter" class="section">
@@ -806,10 +409,10 @@ if ($end_page_prod > $total_pages_prod) {
     <div class="row">
       <div class="col-md-12">
         <div class="newsletter">
-          <p>Sign Up for the <strong>NEWSLETTER</strong></p>
+          <p>Registrate para recibir <strong>NOVEDADES</strong></p>
           <form>
-            <input class="input" type="email" placeholder="Enter Your Email">
-            <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+            <input class="input" type="email" placeholder="Correo Electronico">
+            <button class="newsletter-btn"><i class="fa fa-envelope"></i> Suscribirse</button>
           </form>
           <ul class="newsletter-follow">
             <li>
