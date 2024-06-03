@@ -207,10 +207,9 @@ if ($end_page_prod > $total_pages_prod) {
           <h3 class="title">Nuevos</h3>
           <div class="section-nav">
             <ul class="section-tab-nav tab-nav">
-              <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-              <li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-              <li><a data-toggle="tab" href="#tab1">Camaras</a></li>
-              <li><a data-toggle="tab" href="#tab1">Accesorios</a></li>
+              <?php foreach ($records_cat as  $rowc) : ?>
+                <li ><a data-toggle="tab" href="#tab1"><?php echo htmlspecialchars($rowc['nombreC']);?></a></li>
+              <?php endforeach; ?>
             </ul>
           </div>
         </div>
@@ -335,10 +334,9 @@ if ($end_page_prod > $total_pages_prod) {
           <h3 class="title">Mas Vendidos</h3>
           <div class="section-nav">
             <ul class="section-tab-nav tab-nav">
-              <li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
-              <li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
-              <li><a data-toggle="tab" href="#tab2">Camaras</a></li>
-              <li><a data-toggle="tab" href="#tab2">Accesorios</a></li>
+              <?php foreach ($records_cat as  $rowc) : ?>
+                <li ><a data-toggle="tab" href="#tab1"><?php echo htmlspecialchars($rowc['nombreC']);?></a></li>
+              <?php endforeach; ?>
             </ul>
           </div>
         </div>
