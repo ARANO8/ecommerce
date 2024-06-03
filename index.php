@@ -10,12 +10,17 @@ function home()
 {
     require ROOT_VIEW . '/home.php';
 }
-function verificarlogin_admin(){
+function error404()
+{
+    require ROOT_DIR . '/view/home.php';
+}
+function verificarlogin()
+{
     if (!isset($_SESSION['login']['full_name'])) {
-        echo '<script>window.location.href="' . HTTP_BASE .'/login_admin"</script>';
+        echo '<script>window.location.href="' . HTTP_BASE . '/login_admin"</script>';
     }
 }
-if ($segments[0]==='ecommerce') {
+if ($segments[0] === 'ecommerce') {
     switch ($segments[1] ?? '') {
         case 'login':
             require ROOT_VIEW . '/login/login.php';
@@ -68,6 +73,77 @@ if ($segments[0]==='ecommerce') {
             echo '<script>window.location.href="' . HTTP_BASE . '/login_admin"</script>';
             break;
         case 'web':
+            //verificarlogin();
+            switch ($segments[2] ?? '') {
+                case 'seg_producto':
+                    switch ($segments[3] ?? '') {
+                        case 'list':
+                            require ROOT_VIEW . '/web/seg_producto/list.php';
+                            break;
+                        case 'create':
+                            require ROOT_VIEW . '/web/seg_producto/create.php';
+                            break;
+                        case 'edit':
+                            if (isset($segments[4])) {
+                                $_GET['idproducto'] = $segments[4];
+                                require ROOT_VIEW . '/web/seg_producto/edit.php';
+                            } else {
+                                error404();
+                            }
+                            break;
+                        case 'delete':
+                            if (isset($segments[4])) {
+                                $_GET['idproducto'] = $segments[4];
+                                require ROOT_VIEW . '/web/seg_producto/delete.php';
+                            } else {
+                                error404();
+                            }
+                            break;
+                        case 'view':
+                            if (isset($segments[4])) {
+                                $_GET['idproducto'] = $segments[4];
+                                require ROOT_VIEW . '/web/seg_producto/view.php';
+                            } else {
+                                error404();
+                            }
+                            break;
+                    }
+                    break;
+                case 'seg_usuario':
+                    switch ($segments[3] ?? '') {
+                        case 'list':
+                            require ROOT_VIEW . '/web/seg_usuario/list.php';
+                            break;
+                        case 'create':
+                            require ROOT_VIEW . '/web/seg_usuario/create.php';
+                            break;
+                        case 'edit':
+                            if (isset($segments[4])) {
+                                $_GET['idproducto'] = $segments[4];
+                                require ROOT_VIEW . '/web/seg_usuario/edit.php';
+                            } else {
+                                error404();
+                            }
+                            break;
+                        case 'delete':
+                            if (isset($segments[4])) {
+                                $_GET['idproducto'] = $segments[4];
+                                require ROOT_VIEW . '/web/seg_usuario/delete.php';
+                            } else {
+                                error404();
+                            }
+                            break;
+                        case 'view':
+                            if (isset($segments[4])) {
+                                $_GET['idproducto'] = $segments[4];
+                                require ROOT_VIEW . '/web/seg_producto/view.php';
+                            } else {
+                                error404();
+                            }
+                            break;
+                    }
+                    break;
+            }
             break;
         default:
             home();
