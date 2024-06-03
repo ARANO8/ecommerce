@@ -10,19 +10,22 @@ function home()
 {
     require ROOT_VIEW . '/home.php';
 }
-function verificarlogin()
-{
-    if (!isset($_SESSION['login']['full_name'])) {
-        echo '<script>window.location.href="' . HTTP_BASE . '/login"</script>';
-    }
-}
-if ($segments[0] === 'ecommerce') {
+if ($segments[0]==='ecommerce') {
     switch ($segments[1] ?? '') {
         case 'login':
             require ROOT_VIEW . '/login/login.php';
             break;
+        case 'loginadmin':
+            require ROOT_VIEW . '/login/login_admin.php';
+            break;
         case 'register':
             require ROOT_VIEW . '/login/register.php';
+            break;
+        case 'registeradmin':
+            require ROOT_VIEW . '/login/register_admin.php';
+            break;
+        case 'homeadmin':
+            require ROOT_VIEW . '/homeadmin.php';
             break;
         case 'logout':
             session_destroy();
@@ -41,6 +44,23 @@ if ($segments[0] === 'ecommerce') {
             $response = file_get_contents($url, false, $context);
             echo '<script>window.location.href="' . HTTP_BASE . '/login"</script>';
             break;
+        case 'logoutadmin':
+            session_destroy();
+            $data = [
+                'ope' => 'logoutadmin',
+
+            ];
+            $context = stream_context_create([
+                'http' => [
+                    'method' => 'POST',
+                    'header' => 'Content-Type: application/json',
+                    'content' => json_encode($data),
+                ]
+            ]);
+            $url = HTTP_BASE . "/controller/LoginController.php";
+            $response = file_get_contents($url, false, $context);
+            echo '<script>window.location.href="' . HTTP_BASE . '/loginadmin"</script>';
+            break;
         case 'web':
             break;
         default:
@@ -48,5 +68,3 @@ if ($segments[0] === 'ecommerce') {
             break;
     }
 }
-
-?>

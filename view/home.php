@@ -1,4 +1,3 @@
-<?php require(ROOT_VIEW . '/template/header.php') ?>
 
 <!-- Conexion con el controller -->
 <?php
@@ -146,6 +145,8 @@ if ($end_page_prod > $total_pages_prod) {
 }
 ?>
 <!-- /Conexion con el controller -->
+<?php require(ROOT_VIEW . '/template/header.php') ?>
+
 <!-- NAVIGATION -->
 <nav id="navigation">
   <!-- container -->
