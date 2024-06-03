@@ -167,7 +167,7 @@ if ($end_page_prod > $total_pages_prod) {
 </nav>
 <!-- /NAVIGATION -->
 
-<!-- SECTION -->
+<!-- SECTION CATEGORIAS-->
 <div class="section">
   <!-- container -->
   <div class="container">
@@ -181,8 +181,8 @@ if ($end_page_prod > $total_pages_prod) {
               <img src="<?php echo URL_RESOURCES; ?>img/shop01.png" alt="">
             </div>
             <div class="shop-body">
-              <h3><?php echo htmlspecialchars($rowc['nombreC']); ?><br>Coleccion</h3>
-              <a href="#" class="cta-btn">Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
+              <h3>Coleccion de<br><?php echo htmlspecialchars($rowc['nombreC']); ?></h3>
+              <a href="#" class="cta-btn">Ver Ahora <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -195,7 +195,7 @@ if ($end_page_prod > $total_pages_prod) {
 </div>
 <!-- /SECTION -->
 
-<!-- SECTION -->
+<!-- SECTION productos Nuevos-->
 <div class="section">
   <!-- container -->
   <div class="container">
@@ -208,7 +208,7 @@ if ($end_page_prod > $total_pages_prod) {
           <div class="section-nav">
             <ul class="section-tab-nav tab-nav">
               <?php foreach ($records_cat as  $rowc) : ?>
-                <li ><a data-toggle="tab" href="#tab1"><?php echo htmlspecialchars($rowc['nombreC']);?></a></li>
+                <li><a data-toggle="tab" href="#tab1"><?php echo htmlspecialchars($rowc['nombreC']); ?></a></li>
               <?php endforeach; ?>
             </ul>
           </div>
@@ -224,9 +224,6 @@ if ($end_page_prod > $total_pages_prod) {
             <div id="tab1" class="tab-pane active">
               <div class="products-slick" data-nav="#slick-nav-1">
                 <?php foreach ($records_prod as  $row) : ?>
-
-                  <?php //if(htmlspecialchars($row['new'])=='true'){
-                  ?>
                   <!-- product -->
                   <div class="product">
                     <div class="product-img">
@@ -242,14 +239,18 @@ if ($end_page_prod > $total_pages_prod) {
                       <?php endforeach; ?>
                     </div>
                     <div class="product-body">
-                      <p class="product-Categoria">Categoria</p>
+                      <?php foreach ($records_cat as  $rowc) : ?>
+                        <?php if (htmlspecialchars($rowc['idcategoria']) == htmlspecialchars($row['idcategoria'])) { ?>
+                          <p class="product-Categoria"><?php echo htmlspecialchars($rowc['nombreC']); ?></p>
+                        <?php } ?>
+                      <?php endforeach; ?>
                       <h3 class="product-name"><a href="#"><?php echo htmlspecialchars($row['nombre']); ?></a></h3>
                       <h4 class="product-price">$<?php echo htmlspecialchars($row['precio']); ?></h4>
 
                       <div class="product-btns">
-                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">agregar a Deseos</span></button>
+                        <!-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> -->
+                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Mas Info</span></button>
                       </div>
                     </div>
                     <div class="add-to-cart">
@@ -257,8 +258,6 @@ if ($end_page_prod > $total_pages_prod) {
                     </div>
                   </div>
                   <!-- /product -->
-                  <?php //}
-                  ?>
                 <?php endforeach; ?>
               </div>
               <div id="slick-nav-1" class="products-slick-nav"></div>
@@ -335,7 +334,7 @@ if ($end_page_prod > $total_pages_prod) {
           <div class="section-nav">
             <ul class="section-tab-nav tab-nav">
               <?php foreach ($records_cat as  $rowc) : ?>
-                <li ><a data-toggle="tab" href="#tab1"><?php echo htmlspecialchars($rowc['nombreC']);?></a></li>
+                <li><a data-toggle="tab" href="#tab1"><?php echo htmlspecialchars($rowc['nombreC']); ?></a></li>
               <?php endforeach; ?>
             </ul>
           </div>
@@ -372,7 +371,11 @@ if ($end_page_prod > $total_pages_prod) {
                       <?php endforeach; ?>
                     </div>
                     <div class="product-body">
-                      <p class="product-Categoria">Categoria</p>
+                      <?php foreach ($records_cat as  $rowc) : ?>
+                        <?php if (htmlspecialchars($rowc['idcategoria']) == htmlspecialchars($row['idcategoria'])) { ?>
+                          <p class="product-Categoria"><?php echo htmlspecialchars($rowc['nombreC']); ?></p>
+                        <?php } ?>
+                      <?php endforeach; ?>
                       <h3 class="product-name"><a href="#"><?php echo htmlspecialchars($row['nombre']); ?></a></h3>
                       <h4 class="product-price">$<?php echo htmlspecialchars($row['precio']); ?></h4>
 
