@@ -207,13 +207,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
+                <a href="<?php echo HTTP_BASE."/report/rpt_pdf_producto.php" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Reporte de Productos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <a href="<?php echo HTTP_BASE."/view/web/seg_producto/list.php" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Administrar Productos</p>
                 </a>
@@ -231,13 +231,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
+                <a href="<?php echo HTTP_BASE."/report/rpt_pdf_usuario.php" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Reporte de Usuarios</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <a href="<?php echo HTTP_BASE; ?>/web/seg_producto/list">" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Administrar Usuarios</p>
                 </a>
@@ -256,7 +256,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../layout/top-nav.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Reporte de Ventas</p>
                 </a>

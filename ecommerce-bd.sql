@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2024 a las 06:36:35
+-- Servidor: localhost
+-- Tiempo de generación: 04-06-2024 a las 00:26:41
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -31,6 +31,15 @@ CREATE TABLE `categoria` (
   `idcategoria` int(11) NOT NULL,
   `nombreC` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`idcategoria`, `nombreC`) VALUES
+(1, 'Laptops'),
+(2, 'Camaras'),
+(3, 'Accesorios');
 
 -- --------------------------------------------------------
 
@@ -83,13 +92,22 @@ INSERT INTO `imgproduc` (`idimg`, `rutaimagen`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `incluye`
+-- Estructura de tabla para la tabla `login`
 --
 
-CREATE TABLE `incluye` (
-  `idcategoria` int(11) NOT NULL,
-  `idproducto` int(11) NOT NULL
+CREATE TABLE `login` (
+  `email` varchar(255) NOT NULL,
+  `full_name` varchar(255) DEFAULT NULL,
+  `password_hash` varchar(255) DEFAULT NULL,
+  `registration_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `login`
+--
+
+INSERT INTO `login` (`email`, `full_name`, `password_hash`, `registration_date`) VALUES
+('alan@gmail.com', 'alan', 'e65cf99ae53e2c447ef50aba6fceb3d4d468bbfea19a4a43c2c3b1a4cb2af355c18b71c6b0a4aeef90609cee03b6a13baf562dfb56eeb25d26e5252377ab64ca', '2024-06-03');
 
 -- --------------------------------------------------------
 
@@ -104,19 +122,20 @@ CREATE TABLE `producto` (
   `stock` int(11) NOT NULL,
   `descripcion` text DEFAULT NULL,
   `estado` tinyint(1) DEFAULT 1,
-  `idimg` int(11) NOT NULL
+  `idimg` int(11) NOT NULL,
+  `idcategoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`idproducto`, `nombre`, `precio`, `stock`, `descripcion`, `estado`, `idimg`) VALUES
-(6, 'Asus X200CA-HCL1104G Portátil', 399.99, 2, 'pantalla táctil de 12 pulgadas procesador Intel Celeraon 1007U de 1,5 GHz, 4 GB de RAM, 320 GB HHD, Windows 8', 1, 1),
-(7, 'Samsung Cámara digital Digimax 4010', 9.99, 3, '4.0MP 4X con zoom digital', 0, 2),
-(8, 'Apple MacBook Pro', 1013.00, 1, '13.3\" (256GB SSD, M2, 8GB) Laptop - Space Gray - MNEH3LL/A (June, 2022)', 0, 3),
-(9, 'Samsung Galaxy S7 G930A', 229.99, 4, 'Teléfono de cuatro núcleos 4G LTE desbloqueado de 32 GB con cámara de 12 MP', 1, 4),
-(10, 'MSI GE70 2PE Apache Pro 276XES', 908.67, 7, 'Portátil de 17.3\" (Intel Core i7 4710MQ, 8 GB de RAM, Disco HDD de 1 TB, NVIDIA Geforce GTX 860M con 2 GB, FreeDOS), Negro -Teclado QWERTY Español', 0, 5);
+INSERT INTO `producto` (`idproducto`, `nombre`, `precio`, `stock`, `descripcion`, `estado`, `idimg`, `idcategoria`) VALUES
+(6, 'Asus X200CA-HCL1104G Portátil', 399.99, 2, 'pantalla táctil de 12 pulgadas procesador Intel Celeraon 1007U de 1,5 GHz, 4 GB de RAM, 320 GB HHD, Windows 8', 1, 1, 1),
+(7, 'Samsung Cámara digital Digimax 4010', 9.99, 3, '4.0MP 4X con zoom digital', 0, 2, 2),
+(8, 'Apple MacBook Pro', 1013.00, 1, '13.3\" (256GB SSD, M2, 8GB) Laptop - Space Gray - MNEH3LL/A (June, 2022)', 0, 3, 1),
+(9, 'Samsung Galaxy S7 G930A', 229.99, 4, 'Teléfono de cuatro núcleos 4G LTE desbloqueado de 32 GB con cámara de 12 MP', 1, 4, 1),
+(10, 'MSI GE70 2PE Apache Pro 276XES', 908.67, 7, 'Portátil de 17.3\" (Intel Core i7 4710MQ, 8 GB de RAM, Disco HDD de 1 TB, NVIDIA Geforce GTX 860M con 2 GB, FreeDOS), Negro -Teclado QWERTY Español', 0, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -179,11 +198,10 @@ ALTER TABLE `imgproduc`
   ADD PRIMARY KEY (`idimg`);
 
 --
--- Indices de la tabla `incluye`
+-- Indices de la tabla `login`
 --
-ALTER TABLE `incluye`
-  ADD PRIMARY KEY (`idcategoria`,`idproducto`),
-  ADD KEY `fk_producto` (`idproducto`);
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Indices de la tabla `producto`
@@ -215,7 +233,7 @@ ALTER TABLE `vende`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
@@ -257,13 +275,6 @@ ALTER TABLE `compra`
 --
 ALTER TABLE `factura`
   ADD CONSTRAINT `fk_factura_usuario` FOREIGN KEY (`id`) REFERENCES `usuario` (`id`);
-
---
--- Filtros para la tabla `incluye`
---
-ALTER TABLE `incluye`
-  ADD CONSTRAINT `fk_incluye_categoria` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`),
-  ADD CONSTRAINT `fk_incluye_producto` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`);
 
 --
 -- Filtros para la tabla `producto`
