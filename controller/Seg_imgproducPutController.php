@@ -112,7 +112,7 @@ function update($input)
         $p_idimg = $infoImagen["filename"];
         $tipoImagen = strtolower($infoImagen["extension"]);
         $sizeImagen = $_FILES["imagen"]["size"];
-        $directorio = "archivos/";
+        $directorio = "public/img/";
 
         //echo json_encode($infoImagen);
         $objImgproduc = new Seg_imgproducModel();

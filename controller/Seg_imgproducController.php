@@ -141,7 +141,7 @@ function insert($input)
         $nombreImagen = $_FILES["imagen"]["name"];
         $tipoImagen = strtolower(pathinfo($nombreImagen, PATHINFO_EXTENSION));
         $sizeImagen = $_FILES["imagen"]["size"];
-        $directorio = "archivos/";
+        $directorio = "public/img/";
 
         // Verifica el tipo de imagen
         if (($tipoImagen == "jpg" || $tipoImagen == "jpeg" || $tipoImagen == "png" || $tipoImagen == "gif") && $sizeImagen < 5000000) {

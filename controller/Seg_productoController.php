@@ -7,9 +7,9 @@ header("Content-Type: application/json; charset=UTF-8");
 
 session_start();
 
-require_once($_SERVER['DOCUMENT_ROOT'] . "/ecommerce/config/global.php");
+require_once ($_SERVER['DOCUMENT_ROOT'] . "/ecommerce/config/global.php");
 
-require_once(ROOT_DIR . "/model/Seg_productoModel.php");
+require_once (ROOT_DIR . "/model/Seg_productoModel.php");
 
 $method = $_SERVER['REQUEST_METHOD'];
 $input = json_decode(file_get_contents('php://input'), true);
@@ -31,7 +31,7 @@ switch ($method) {
                 filterId($input);
             } elseif ($p_ope == 'filterSearch') {
                 filterPaginateAll($input);
-            } elseif ($p_ope ==  'filterall') {
+            } elseif ($p_ope == 'filterall') {
                 filterAll($input);
             }
         }
@@ -50,7 +50,7 @@ switch ($method) {
         break;
 }
 //Funcion para obtener un producto por su id
-function  filterId($input)
+function filterId($input)
 {
     $tseg_producto = new Seg_productoModel();
     $p_idproducto = !empty($input['idproducto']) ? $input['idproducto'] : $_GET['idproducto'];
@@ -58,7 +58,7 @@ function  filterId($input)
     echo json_encode($var);
 }
 //Función para obtener todos los productos con paginación y filtrado
-function  filterPaginateAll($input)
+function filterPaginateAll($input)
 {
     $nro_record_page = 10;
     $page = !empty($input['page']) ? $input['page'] : $_GET['page'];
@@ -71,7 +71,7 @@ function  filterPaginateAll($input)
     echo json_encode($var);
 }
 //Funcion para obtener todos los usuarios
-function  filterAll($input)
+function filterAll($input)
 {
     $tseg_producto = new Seg_productoModel();
     $var = $tseg_producto->findall();
@@ -80,36 +80,52 @@ function  filterAll($input)
 //Funcion para insertar producto
 function insert($input)
 {
-    $p_nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];;
-    $p_precio = !empty($input['precio']) ? $input['precio'] : $_POST['precio'];;
-    $p_stock = !empty($input['stock']) ? $input['stock'] : $_POST['stock'];;
-    $p_descripcion = !empty($input['descripcion']) ? $input['descripcion'] : $_POST['descripcion'];;
-    $p_idimgprod = !empty($input['idimgprod']) ? $input['idimgprod'] : $_POST['idimgprod'];;
+    $p_nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];
+    ;
+    $p_precio = !empty($input['precio']) ? $input['precio'] : $_POST['precio'];
+    ;
+    $p_stock = !empty($input['stock']) ? $input['stock'] : $_POST['stock'];
+    ;
+    $p_descripcion = !empty($input['descripcion']) ? $input['descripcion'] : $_POST['descripcion'];
+    ;
+    $p_estatus = !empty($input['estatus']) ? $input['estatus'] : $_POST['estatus'];
+    ;
+    $p_idimg = !empty($input['idimg']) ? $input['idimg'] : $_POST['idimg'];
+    ;
 
     $tseg_producto = new Seg_productoModel();
-    $var = $tseg_producto->insert($p_nombre, $p_precio, $p_stock, $p_descripcion, $p_idimgprod);
+    $var = $tseg_producto->insert($p_nombre, $p_precio, $p_stock, $p_descripcion, $p_estatus, $p_idimg);
 
     echo json_encode($var);
 }
 //Funcion para actualizar usuario
 function update($input)
 {
-    $p_idproducto = !empty($input['idproducto']) ? $input['idproducto'] : $_POST['idproducto'];;
-    $p_nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];;
-    $p_precio = !empty($input['precio']) ? $input['precio'] : $_POST['precio'];;
-    $p_stock = !empty($input['stock']) ? $input['stock'] : $_POST['stock'];;
-    $p_descripcion = !empty($input['descripcion']) ? $input['descripcion'] : $_POST['descripcion'];;
-    $p_idimgprod = !empty($input['idimgprod']) ? $input['idimgprod'] : $_POST['idimgprod'];;
+    $p_idproducto = !empty($input['idproducto']) ? $input['idproducto'] : $_POST['idproducto'];
+    ;
+    $p_nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];
+    ;
+    $p_precio = !empty($input['precio']) ? $input['precio'] : $_POST['precio'];
+    ;
+    $p_stock = !empty($input['stock']) ? $input['stock'] : $_POST['stock'];
+    ;
+    $p_descripcion = !empty($input['descripcion']) ? $input['descripcion'] : $_POST['descripcion'];
+    ;
+    $p_estatus = !empty($input['estatus']) ? $input['estatus'] : $_POST['estatus'];
+    ;
+    $p_idimg = !empty($input['idimg']) ? $input['idimg'] : $_POST['idimg'];
+    ;
 
     $tseg_producto = new Seg_productoModel();
-    $var = $tseg_producto->update($p_idproducto, $p_nombre, $p_precio, $p_stock, $p_descripcion, $p_idimgprod);
+    $var = $tseg_producto->update($p_idproducto, $p_nombre, $p_precio, $p_stock, $p_descripcion, $p_estatus, $p_idimg);
 
     echo json_encode($var);
 }
 //Funcion para eliminar usuario
 function delete($input)
 {
-    $p_idproducto = !empty($input['idproducto']) ? $input['idproducto'] : $_POST['idproducto'];;
+    $p_idproducto = !empty($input['idproducto']) ? $input['idproducto'] : $_POST['idproducto'];
+    ;
     $tseg_producto = new Seg_productoModel();
     $var = $tseg_producto->delete($p_idproducto);
 
