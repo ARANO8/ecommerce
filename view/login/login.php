@@ -20,12 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $url = HTTP_BASE . "/controller/Seg_LoginController.php";
     $response = file_get_contents($url, false, $context);
     $result = json_decode($response, true);
-    if ($result["ESTADO"] && isset($result['DATA']) &&  !empty($result['DATA'])) {
+    //echo json_encode($response["ESTADO"] . " << login state");
+    //echo json_encode($result);
+    //echo $result['DATA'][0];
+    if ($result["ESTADO"] && isset($result['DATA']) && !empty($result['DATA'])) {
       $_SESSION['login'] = $result['DATA'][0];
       if (isset($_SESSION['login']['nombre'])) {
         echo "<script>alert('Acceso Autorizado');</script>";
         //A CONTINUACION ENRUTAR A LA PAGINA QUE IRA CUANDO SE INICIE SESION
-        echo '<script>window.location.href ="' . HTTP_BASE . '/poner aqui la ruta";</script>';
+        echo '<script>window.location.href ="' . HTTP_BASE . '/login";</script>';
       } else {
         echo "<script>alert('Acceso No Autorizado');</script>";
       }
@@ -33,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo "<script>alert('Hubo un problema, Contactarse con el Administrador de Sistemas');</script>";
     }
   } catch (Exception $e) {
-    echo "<script>alert('Hubo un problema, Contactarse con el Administrador de Sistemas');</script>";
+    echo "<script>alert('Hubo un problema, Contactarse con el Administrador de Sistemas 1');</script>";
   }
 }
 ?>
@@ -42,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in</title>
+  <title>login</title>
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
@@ -99,10 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
 
         <p class="mb-1">
-          <a href="forgot-password.html">Olvide mi Contraseña</a>
+          <a href="<?php echo HTTP_BASE . '/register'; ?>">Olvide mi Contraseña</a>
         </p>
         <p class="mb-0">
-          <a href="register" class="text-center">Crear una cuenta</a>
+          <a href="<?php echo HTTP_BASE . '/register'; ?>" class="text-center">Crear una cuenta</a>
         </p>
       </div>
 
