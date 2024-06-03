@@ -66,35 +66,36 @@ if ($p_idproducto) {
                                 <div class="card-body">
                                 <div class="form-group">
                                         <label for="idproducto">ID Producto</label>
-                                        <input type="number" class="form-control" name="idproducto" required value="">
+                                        <input type="hidden" class="form-control" name="idproducto" value="<?php echo $record['idproducto']; ?>">
+                                        <input type="number" class="form-control" value="<?php echo $record['idproducto'];?>" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
-                                        <input type="text" class="form-control" name="nombre" required value="">
+                                        <input type="text" class="form-control" name="nombre" required value="<?php echo $record['nombre'];?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="precio">Precio</label>
-                                        <input type="number" class="form-control" name="precio" required value="">
+                                        <input type="number" class="form-control" name="precio" required value="<?php echo $record['precio'];?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="stock">Stock</label>
-                                        <input type="number" class="form-control" name="stock" required value="">
+                                        <input type="number" class="form-control" name="stock" required value="<?php echo $record['stock'];?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="descripcion">Descripcion</label>
-                                        <input type="text" class="form-control" name="descripcion" required value="">
+                                        <input type="text" class="form-control" name="descripcion" required value="<?php echo $record['descripcion'];?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="estado">Estado</label>
-                                        <input type="number" class="form-control" name="estado" required value="">
+                                        <input type="number" class="form-control" name="estado" required value="<?php echo $record['estado'];?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="idimg">idimg</label>
-                                        <input type="number" class="form-control" name="idimg" required value="">
+                                        <input type="number" class="form-control" name="idimg" required value="<?php echo $record['idimg'];?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="idcategoria">idcategoria</label>
-                                        <input type="number" class="form-control" name="idcategoria" required value="">
+                                        <input type="number" class="form-control" name="idcategoria" required value="<?php echo $record['idcategoria'];?>">
                                     </div>
                                 </div>
                                 <div class="card-footer">
