@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <script src="<?php echo URL_RESOURCES; ?>js/bootstrap.bundle.min.js"></script>
 
-  <script src="<?php echo URL_RESOURCES; ?>adminlte/dist/js/adminlte.min.js?v=3.2.0"></script>
+  <script src="<?php echo URL_RESOURCES; ?>js/adminlte.min.js?v=3.2.0"></script>
 
 
 </body>
