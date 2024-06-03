@@ -80,14 +80,15 @@ function  filterAll($input)
 //Funcion para insertar producto
 function insert($input)
 {
-    $p_nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];;
-    $p_precio = !empty($input['precio']) ? $input['precio'] : $_POST['precio'];;
-    $p_stock = !empty($input['stock']) ? $input['stock'] : $_POST['stock'];;
-    $p_descripcion = !empty($input['descripcion']) ? $input['descripcion'] : $_POST['descripcion'];;
-    $p_idimgprod = !empty($input['idimgprod']) ? $input['idimgprod'] : $_POST['idimgprod'];;
+    $p_nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];
+    $p_precio = !empty($input['precio']) ? $input['precio'] : $_POST['precio'];
+    $p_stock = !empty($input['stock']) ? $input['stock'] : $_POST['stock'];
+    $p_descripcion = !empty($input['descripcion']) ? $input['descripcion'] : $_POST['descripcion'];
+    $p_estado = !empty($input['estado']) ? $input['estado'] : $_POST['estado'];    
+    $p_idimg = !empty($input['idimg']) ? $input['idimg'] : $_POST['idimg'];
 
     $tseg_producto = new Seg_productoModel();
-    $var = $tseg_producto->insert($p_nombre, $p_precio, $p_stock, $p_descripcion, $p_idimgprod);
+    $var = $tseg_producto->insert($p_nombre, $p_precio, $p_stock, $p_descripcion, $p_estado,$p_idimg);
 
     echo json_encode($var);
 }
@@ -95,14 +96,15 @@ function insert($input)
 function update($input)
 {
     $p_idproducto = !empty($input['idproducto']) ? $input['idproducto'] : $_POST['idproducto'];;
-    $p_nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];;
-    $p_precio = !empty($input['precio']) ? $input['precio'] : $_POST['precio'];;
-    $p_stock = !empty($input['stock']) ? $input['stock'] : $_POST['stock'];;
-    $p_descripcion = !empty($input['descripcion']) ? $input['descripcion'] : $_POST['descripcion'];;
-    $p_idimgprod = !empty($input['idimgprod']) ? $input['idimgprod'] : $_POST['idimgprod'];;
+    $p_nombre = !empty($input['nombre']) ? $input['nombre'] : $_POST['nombre'];
+    $p_precio = !empty($input['precio']) ? $input['precio'] : $_POST['precio'];
+    $p_stock = !empty($input['stock']) ? $input['stock'] : $_POST['stock'];
+    $p_descripcion = !empty($input['descripcion']) ? $input['descripcion'] : $_POST['descripcion'];
+    $p_estado = !empty($input['estado']) ? $input['estado'] : $_POST['estado'];    
+    $p_idimg = !empty($input['idimg']) ? $input['idimg'] : $_POST['idimg'];
 
     $tseg_producto = new Seg_productoModel();
-    $var = $tseg_producto->update($p_idproducto, $p_nombre, $p_precio, $p_stock, $p_descripcion, $p_idimgprod);
+    $var = $tseg_producto->update($p_idproducto, $p_nombre, $p_precio, $p_stock, $p_descripcion, $p_estado,$p_idimg);
 
     echo json_encode($var);
 }
