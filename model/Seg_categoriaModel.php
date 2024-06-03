@@ -32,7 +32,7 @@ class Seg_categoriaModel extends ModeloBasePDO {
 
         $sqlcount="SELECT COUNT(1) AS cantCategorias
         FROM `categoria`
-        WHERE upper(concat(IFNULL(idcategoria,''),IFNULL(nombreC,''))) LIKE concat('%',upper(IFNULL(:filtro,'')),'%');";
+        WHERE upper(concat(IFNULL(idcategoria,''),IFNULL(nombreC,''))) LIKE concat('%',upper(IFNULL(:p_filtro,'')),'%');";
         $param=array();
         array_push($param, [':p_filtro', $p_filtro, PDO::PARAM_STR]);
         $var1 = parent::gselect($sqlcount, $param);

@@ -57,8 +57,8 @@ function filterId($input){
     echo json_encode($var);
 }
 function filterPaginateAll($input){
-    $page = !empty($input['page']) ? $input['page'] : $_GET['page'];
-    $filter = !empty($input['filter']) ? $input['filter'] : $_GET['filter'];
+    $page = !empty($input['page']) ? $input['page'] : 1;
+    $filter = !empty($input['filter']) ? $input['filter'] : '';
     $nro_record_page = 10;
     $p_limit = 10;
     $p_offset = 0;

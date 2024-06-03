@@ -2,6 +2,43 @@
 
 <!-- Conexion con el controller -->
 <?php
+// aqui va la conexion con la tabla de categorias
+$page_cat = 1;
+$ope_cat = 'filterSearch';
+$filter_cat = '';
+$items_per_page_cat = 10;
+$total_pages_cat = 1;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $page_cat = isset($_POST['page']) ? $_POST['page'] : 1;
+  $filter_cat = urlencode(trim(isset($_POST['filter']) ? $_POST['filter'] : ''));
+}
+$url_cat = HTTP_BASE . "/controller/Seg_categoriaController.php?ope=" . $ope_cat . "&page=" . $page_cat . "&filter=" . $filter_cat;
+$filter_cat = urldecode($filter_cat);
+$response_cat = file_get_contents($url_cat);
+$responseData_cat = json_decode($response_cat, true);
+$records_cat = $responseData_cat['DATA'];
+$totalItems_cat = $responseData_cat['LENGTH'];
+try {
+  $total_pages_cat =  ceil($totalItems_cat / $items_per_page_cat);
+} catch (Exception $e) {
+  $total_pages_cat = 1;
+}
+//paginacion
+$max_links_cat = 5;
+$half_max_link_cat = floor($max_links_cat / 2);
+$start_page_cat = $page_cat - $half_max_link_cat;
+$end_page_cat = $page_cat + $half_max_link_cat;
+if ($start_page_cat < 1) {
+  $end_page_cat += abs($start_page_cat) + 1;
+  $start_page_cat = 1;
+}
+if ($end_page_cat > $total_pages_cat) {
+  $start_page_cat -= ($end_page_cat - $total_pages_cat);
+  $end_page_cat = $total_pages_cat;
+  if ($start_page_cat < 1) {
+    $start_page_cat = 1;
+  }
+}
 // aqui va la conexion con la tabla de imagenes
 $page_img = 1;
 $ope_img = 'filterSearch';
@@ -117,13 +154,10 @@ if ($end_page_prod > $total_pages_prod) {
     <div id="responsive-nav">
       <!-- NAV -->
       <ul class="main-nav nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Hot Deals</a></li>
-        <li><a href="#">Categories</a></li>
-        <li><a href="#">Laptops</a></li>
-        <li><a href="#">Smartphones</a></li>
-        <li><a href="#">Camaras</a></li>
-        <li><a href="#">Accesorios</a></li>
+        <li class="active"><a href="#">Pagina Principal</a></li>
+        <li><a href="#">Mas Vendidos</a></li>
+        <li><a href="#">Categorias</a></li>
+
       </ul>
       <!-- /NAV -->
     </div>
@@ -139,47 +173,21 @@ if ($end_page_prod > $total_pages_prod) {
   <div class="container">
     <!-- row -->
     <div class="row">
-      <!-- shop -->
-      <div class="col-md-4 col-xs-6">
-        <div class="shop">
-          <div class="shop-img">
-            <img src="<?php echo URL_RESOURCES; ?>img/shop01.png" alt="">
-          </div>
-          <div class="shop-body">
-            <h3>Laptop<br>Coleccion</h3>
-            <a href="#" class="cta-btn">Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-      </div>
-      <!-- /shop -->
-
-      <!-- shop -->
-      <div class="col-md-4 col-xs-6">
-        <div class="shop">
-          <div class="shop-img">
-            <img src="<?php echo URL_RESOURCES; ?>img/shop03.png" alt="">
-          </div>
-          <div class="shop-body">
-            <h3>Accesorios<br>Coleccion</h3>
-            <a href="#" class="cta-btn">Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
+      <?php foreach ($records_cat as  $rowc) : ?>
+        <!-- shop -->
+        <div class="col-md-4 col-xs-6">
+          <div class="shop">
+            <div class="shop-img">
+              <img src="<?php echo URL_RESOURCES; ?>img/shop01.png" alt="">
+            </div>
+            <div class="shop-body">
+              <h3><?php echo htmlspecialchars($rowc['nombreC']); ?><br>Coleccion</h3>
+              <a href="#" class="cta-btn">Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- /shop -->
-
-      <!-- shop -->
-      <div class="col-md-4 col-xs-6">
-        <div class="shop">
-          <div class="shop-img">
-            <img src="<?php echo URL_RESOURCES; ?>img/shop02.png" alt="">
-          </div>
-          <div class="shop-body">
-            <h3>Camaras<br>Coleccion</h3>
-            <a href="#" class="cta-btn">Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-      </div>
-      <!-- /shop -->
+        <!-- /shop -->
+      <?php endforeach; ?>
     </div>
     <!-- /row -->
   </div>
