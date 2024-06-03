@@ -10,7 +10,7 @@ function home()
 {
     require ROOT_VIEW . '/home.php';
 }
-if ($segments[0] === 'ecommerce') {
+if ($segments[0]==='ecommerce') {
     switch ($segments[1] ?? '') {
         case 'login':
             require ROOT_VIEW . '/login/login.php';
