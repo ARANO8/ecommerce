@@ -213,7 +213,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo HTTP_BASE."/view/web/seg_producto/list.php" ?>" class="nav-link">
+                <a href="<?php echo HTTP_BASE; ?>/web/seg_producto/list" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Administrar Productos</p>
                 </a>
