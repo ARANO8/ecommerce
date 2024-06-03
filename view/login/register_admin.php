@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </form>
 
-                <a href="<?php echo HTTP_BASE . '/loginadmin'; ?>" class="text-center">Ya Tengo cuenta, Iniciar Session</a>
+                <a href="<?php echo HTTP_BASE . '/login_admin'; ?>" class="text-center">Ya Tengo cuenta, Iniciar Session</a>
             </div>
 
         </div>
