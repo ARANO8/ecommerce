@@ -78,8 +78,9 @@
               <form>
                 <select class="input-select">
                   <option value="0">Categorias</option>
-                  <option value="1">Categoria 01</option>
-                  <option value="1">Categoria 02</option>
+                  <?php foreach ($records_cat as  $rowc) : ?>
+                    <option value="<?php echo htmlspecialchars($rowc['idcategoria']); ?>"><?php echo htmlspecialchars($rowc['nombreC']);?></option>
+                  <?php endforeach; ?>
                 </select>
                 <input class="input" placeholder="Buscar ...">
                 <button class="search-btn">Buscar</button>
