@@ -89,11 +89,11 @@ function filterAll($input)
 function filterId($input)
 {
     // Obtiene el parámetro 'id' de la petición
-    $p_id = !empty($input['idimg']) ? $input['idimg'] : $_GET['idimg'];
+    $p_idimg = !empty($input['idimg']) ? $input['idimg'] : $_GET['idimg'];
     // Crea un nuevo objeto Seg_imgproducModel
     $objImgproduc = new Seg_imgproducModel();
     // Llama a la función findId del objeto Seg_imgproducModel
-    $var = $objImgproduc->findId($p_id);
+    $var = $objImgproduc->findId($p_idimg);
     // Imprime el resultado en formato JSON
     echo json_encode($var);
 }

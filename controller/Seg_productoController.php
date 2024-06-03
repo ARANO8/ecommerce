@@ -35,7 +35,6 @@ switch ($method) {
                 filterAll($input);
             }
         }
-
         break;
     case 'POST': //inserta
         insert($input);
