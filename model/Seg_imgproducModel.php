@@ -24,15 +24,15 @@ class Seg_imgproducModel extends ModeloBasePDO
     }
 
     // Método para obtener una imagen por su ID
-    public function findId($p_id)
+    public function findId($p_idimg)
     {
         // Consulta SQL para seleccionar una imagen por su ID
         $sql = "SELECT idimg, rutaimagen
                 FROM imgproduc
-                WHERE idimg = :p_id;";
+                WHERE idimg = :p_idimg;";
         $param = array();
         // Agrega el parámetro ID a la consulta
-        array_push($param, [':p_id', $p_id, PDO::PARAM_INT]);
+        array_push($param, [':p_idimg', $p_idimg, PDO::PARAM_INT]);
         // Ejecuta la consulta y devuelve el resultado
         return parent::gselect($sql, $param);
     }
