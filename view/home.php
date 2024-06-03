@@ -157,7 +157,7 @@ if ($end_page_prod > $total_pages_prod) {
                     <div class="product-img">
                       <?php
                         // aqui va la conexion con la tabla de imagenes
-                        $p_id_imagen = $_GET[htmlspecialchars($row['idimg'])] ?? null;
+                        $p_id_imagen = $_GET['idimg'] ?? null;
                         $record_img = null;
 
                         if ($p_id_imagen) {
@@ -165,29 +165,24 @@ if ($end_page_prod > $total_pages_prod) {
                           $reponse_img = file_get_contents($url_img);
                           $reponseData_img = json_decode($reponse_img, true);
                           if ($reponseData_img &&  $reponseData_img['ESTADO'] == 1 && !empty($reponseData_img['DATA'])) {
-                            $record_img = $reponseData_img['DATA'][0];
+                            $record_img = $reponseData_img['DATA'];
+                            // echo $record_img;
                           } else {
                             $record_img = null;
                           }
                         }
+                        var_dump($row['idimg']);
                       ?>
                       <img src="<?php echo htmlspecialchars($record_img['rutaimagen']) ; ?>" alt="">
                       <div class="product-label">
-                        <span class="sale">-30%</span>
-                        <span class="new">NEW</span>
+                        <span class="new">NUEVO</span>
                       </div>
                     </div>
                     <div class="product-body">
                       <p class="product-Categoria">Categoria</p>
                       <h3 class="product-name"><a href="#"><?php echo htmlspecialchars($row['nombre']); ?></a></h3>
-                      <h4 class="product-price">$<?php echo htmlspecialchars($row['precio']); ?> <del class="product-old-price">$000.00</del></h4>
-                      <div class="product-rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
+                      <h4 class="product-price">$<?php echo htmlspecialchars($row['precio']); ?></h4>
+                      
                       <div class="product-btns">
                         <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
                         <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
